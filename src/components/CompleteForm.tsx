@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Form, Col, Row, Button } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const CompleteForm = () => {
   const [plaatsOngeval, setPlaatsOngeval] = useState<string>("");
@@ -10,8 +11,18 @@ const CompleteForm = () => {
   const [andereBescherming, setAndereBescherming] = useState<boolean>(false);
   const [uitdiensttreding, setUitdiensttreding] = useState<boolean>(false);
 
+  const handleSubmit = () => {
+    toast.success("Form submitted successfully!", {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 3000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      draggable: true,
+    });
+  };
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <legend>I. Gegevens over de werkgever</legend>
       <Row>
         <Form.Label>
@@ -851,7 +862,7 @@ const CompleteForm = () => {
       <Row>
         <Col style={{ display: "flex", flexDirection: "column" }}>
           <Form.Label>
-          Is de datum van uitdiensttreding gekend?:
+            Is de datum van uitdiensttreding gekend?:
             <span className="hoger">(3)</span>
           </Form.Label>
 
@@ -862,8 +873,7 @@ const CompleteForm = () => {
             name="uitdiensttreding"
             required
             value={"ja"}
-            onChange={()=>setUitdiensttreding(true)}
-            
+            onChange={() => setUitdiensttreding(true)}
           />
           <Form.Check
             inline
@@ -872,8 +882,7 @@ const CompleteForm = () => {
             name="uitdiensttreding"
             required
             value={"nee"}
-            onChange={()=>setUitdiensttreding(false)}
-            
+            onChange={() => setUitdiensttreding(false)}
           />
         </Col>
       </Row>
