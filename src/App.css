@@ -1,0 +1,42 @@
+.Container h1 {
+  text-align: center;
+}
+
+form {
+  width: 55%;
+  margin: 1% auto;
+}
+
+legend {
+  background-color: rgba(211, 211, 211, 0.775);
+  text-align: center;
+  margin-top: 2%;
+}
+
+.cursief {
+  font-style: italic;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.verduidelijking
+{
+  width: 55%;
+  margin: 3% auto;
+
+}
+
+.hoger{
+  position: relative;
+  top: -5px;
+  font-style: italic;
+}
+
+.verzendButton
+{
+  width: 20%;
+  margin: 2% 40%;
+  
+}
