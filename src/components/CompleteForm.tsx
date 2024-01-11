@@ -1,8 +1,38 @@
 import { useState } from "react";
 import { Form, Col, Row, Button } from "react-bootstrap";
-import { toast } from "react-toastify";
 
-const CompleteForm = () => {
+const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
+  const [arbeidsOngevalData, setArbeidsOngevalData] = useState({
+    // Form 1: Gegevens over de werkgever
+
+    form1Naam: "",
+    form1Tel: "",
+    form1Fax: "",
+    form1Straat: "",
+    form1Postcode: "",
+    form1Gemeente: "",
+    form1Aard: "",
+    form1BELCode: "",
+    form1OndernemingsNr: "",
+    form1VestigingsNr: "",
+
+    // Form 2: Gegevens over het slachtoffer
+
+    form2NaamVoornaam: "",
+    form2NaamEchtgenoot: "",
+    form2Geslacht: "",
+    form2Geboortedatum: "",
+    form2Taalrol: "",
+    form2RijksregisterNr: "",
+    form2Nationaliteit: "",
+    form2MedischDosierNr: "",
+    form2BankrekeningNr: "",
+    form2BIC: "",
+    form2HoofdVerblijfPlaats: "",
+    form2Postcode: "",
+    form2Gemeente: "",
+  });
+
   const [plaatsOngeval, setPlaatsOngeval] = useState<string>("");
   const [bezigheid, setBezigheid] = useState<string>("");
   const [beroepsCategorie, setBeroepsCategorie] = useState<string>("");
@@ -11,14 +41,40 @@ const CompleteForm = () => {
   const [andereBescherming, setAndereBescherming] = useState<boolean>(false);
   const [uitdiensttreding, setUitdiensttreding] = useState<boolean>(false);
 
-  const handleSubmit = () => {
-    toast.success("Form submitted successfully!", {
-      position: toast.POSITION.TOP_RIGHT,
-      autoClose: 3000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      draggable: true,
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+
+    setArbeidsOngevalData({
+      // Form 1: Gegevens over de werkgever
+
+      form1Naam: "",
+      form1Tel: "",
+      form1Fax: "",
+      form1Straat: "",
+      form1Postcode: "",
+      form1Gemeente: "",
+      form1Aard: "",
+      form1BELCode: "",
+      form1OndernemingsNr: "",
+      form1VestigingsNr: "",
+
+      // Form 2: Gegevens over het slachtoffer
+
+      form2NaamVoornaam: "",
+      form2NaamEchtgenoot: "",
+      form2Geslacht: "",
+      form2Geboortedatum: "",
+      form2Taalrol: "",
+      form2RijksregisterNr: "",
+      form2Nationaliteit: "",
+      form2MedischDosierNr: "",
+      form2BankrekeningNr: "",
+      form2BIC: "",
+      form2HoofdVerblijfPlaats: "",
+      form2Postcode: "",
+      form2Gemeente: "",
     });
+    onSuccess();
   };
 
   return (
@@ -28,7 +84,17 @@ const CompleteForm = () => {
         <Form.Label>
           Naam van de administratie, dienst of inrichting:
         </Form.Label>
-        <Form.Control style={{ width: "98%", marginLeft: "1%" }} required />
+        <Form.Control
+          style={{ width: "98%", marginLeft: "1%" }}
+          required
+          onChange={(e) =>
+            setArbeidsOngevalData((prev) => ({
+              ...prev,
+              form1Naam: e.target.value,
+            }))
+          }
+          value={arbeidsOngevalData.form1Naam}
+        />
       </Row>
       <Row>
         <Col>
@@ -37,6 +103,13 @@ const CompleteForm = () => {
             required
             pattern="[0-9]{9}"
             title="Voer een geldig telefoonnummer in (9 cijfers)"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form1Tel: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form1Tel}
           />
         </Col>
         <Col>
@@ -45,13 +118,29 @@ const CompleteForm = () => {
             required
             pattern="[0-9]{9}"
             title="Voer een geldig faxnummer in (9 cijfers)"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form1Fax: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form1Fax}
           />
         </Col>
       </Row>
       <Row>
         <Col>
           <Form.Label>Straat / nr. / bus:</Form.Label>
-          <Form.Control required />
+          <Form.Control
+            required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form1Straat: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form1Straat}
+          />
         </Col>
         <Col>
           <Form.Label>Postcode:</Form.Label>
@@ -59,6 +148,13 @@ const CompleteForm = () => {
             required
             pattern="[0-9]{4}"
             title="Voer een geldig postcode in (4 cijfers)"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form1Postcode: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form1Postcode}
           />
         </Col>
         <Col>
@@ -67,13 +163,29 @@ const CompleteForm = () => {
             required
             pattern="[A-Za-z\s]+"
             title="Alleen letters zijn toegestaan"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form1Gemeente: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form1Gemeente}
           />
         </Col>
       </Row>
       <Row>
         <Col xs={9}>
           <Form.Label>Aard van de administratie:</Form.Label>
-          <Form.Control required />
+          <Form.Control
+            required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form1Aard: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form1Aard}
+          />
         </Col>
         <Col>
           <Form.Label>NACE BEL-code:</Form.Label>
@@ -81,6 +193,13 @@ const CompleteForm = () => {
             required
             pattern="\d{2}\.\d{3}"
             title="Voer een geldige NACE BEL-code in (bijv., 58.110)"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form1BELCode: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form1BELCode}
           />
         </Col>
       </Row>
@@ -91,6 +210,13 @@ const CompleteForm = () => {
             required
             pattern="\d{4}-\d{3}-\d{3}"
             title="Voer een geldig ondernemingsnummer in (bijv., 0449-188-489)"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form1OndernemingsNr: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form1OndernemingsNr}
           />
         </Col>
         <Col>
@@ -98,6 +224,13 @@ const CompleteForm = () => {
           <Form.Control
             pattern="\d{4}-\d{3}-\d{3}"
             title="Voer een geldig vestigingseenheidsnummer in (bijv., 0449-188-489)"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form1VestigingsNr: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form1VestigingsNr}
           />
         </Col>
       </Row>
@@ -111,6 +244,13 @@ const CompleteForm = () => {
             required
             pattern="[A-Za-z\s]+"
             title="Alleen letters zijn toegestaan"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form2NaamVoornaam: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form2NaamVoornaam}
           />
         </Col>
         <Col>
@@ -120,6 +260,13 @@ const CompleteForm = () => {
           <Form.Control
             pattern="[A-Za-z\s]+"
             title="Alleen letters zijn toegestaan"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form2NaamEchtgenoot: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form2NaamEchtgenoot}
           />
         </Col>
       </Row>
@@ -135,14 +282,28 @@ const CompleteForm = () => {
               label="M"
               type={"radio"}
               name="geslacht"
+              value={"M"}
               required
+              onChange={(e) =>
+                setArbeidsOngevalData((prev) => ({
+                  ...prev,
+                  form2Geslacht: e.target.value,
+                }))
+              }
             />
             <Form.Check
               inline
               label="V"
               type={"radio"}
               name="geslacht"
+              value={"V"}
               required
+              onChange={(e) =>
+                setArbeidsOngevalData((prev) => ({
+                  ...prev,
+                  form2Geslacht: e.target.value,
+                }))
+              }
             />
           </div>
         </Col>
@@ -151,7 +312,17 @@ const CompleteForm = () => {
           <Form.Label>
             Geboortedatum <span className="hoger">(2)</span>:
           </Form.Label>
-          <Form.Control type="date" required />
+          <Form.Control
+            type="date"
+            required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form2Geboortedatum: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form2Geboortedatum}
+          />
         </Col>
 
         <Col>
@@ -160,6 +331,13 @@ const CompleteForm = () => {
             required
             pattern="[A-Za-z]+"
             title="Alleen letters zijn toegestaan"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form2Taalrol: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form2Taalrol}
           />
         </Col>
       </Row>
@@ -171,6 +349,13 @@ const CompleteForm = () => {
             required
             pattern="^\d{2}\.\d{2}\.\d{2}-\d{3}\.\d{2}$"
             title="Voer een geldig Rijksregisternummer in (bijv., 01.02.23-065.85)"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form2RijksregisterNr: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form2RijksregisterNr}
           />
         </Col>
 
@@ -180,13 +365,30 @@ const CompleteForm = () => {
             required
             pattern="[A-Za-z]+"
             title="Alleen letters zijn toegestaan"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form2Nationaliteit: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form2Nationaliteit}
           />
         </Col>
       </Row>
 
       <Row>
         <Form.Label>Dossiernummer bij de bevoegde medische dienst:</Form.Label>
-        <Form.Control style={{ width: "98%", marginLeft: "1%" }} required />
+        <Form.Control
+          style={{ width: "98%", marginLeft: "1%" }}
+          required
+          onChange={(e) =>
+            setArbeidsOngevalData((prev) => ({
+              ...prev,
+              form2MedischDosierNr: e.target.value,
+            }))
+          }
+          value={arbeidsOngevalData.form2MedischDosierNr}
+        />
       </Row>
 
       <Row>
@@ -198,18 +400,44 @@ const CompleteForm = () => {
             pattern="BE\d{2}[0-9]{12}"
             required
             title="Voer een geldig Belgisch IBAN in (bijv., BE68539007547034)"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form2BankrekeningNr: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form2BankrekeningNr}
           />
         </Col>
 
         <Col>
           <Form.Label>Financiële instelling (BIC nummer):</Form.Label>
-          <Form.Control required />
+          <Form.Control
+            required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form2BIC: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form2BIC}
+          />
         </Col>
       </Row>
 
       <Row>
         <Form.Label>Hoofdverblijfplaats: straat / nr. / bus</Form.Label>
-        <Form.Control style={{ width: "98%", marginLeft: "1%" }} required />
+        <Form.Control
+          style={{ width: "98%", marginLeft: "1%" }}
+          required
+          onChange={(e) =>
+            setArbeidsOngevalData((prev) => ({
+              ...prev,
+              form2HoofdVerblijfPlaats: e.target.value,
+            }))
+          }
+          value={arbeidsOngevalData.form2HoofdVerblijfPlaats}
+        />
       </Row>
 
       <Row>
@@ -219,6 +447,13 @@ const CompleteForm = () => {
             required
             pattern="[0-9]{4}"
             title="Voer een geldig postcode in (4 cijfers)"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form2Postcode: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form2Postcode}
           />
         </Col>
 
@@ -228,6 +463,13 @@ const CompleteForm = () => {
             required
             pattern="[A-Za-z\s]+"
             title="Alleen letters zijn toegestaan"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form2Gemeente: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form2Gemeente}
           />
         </Col>
       </Row>
