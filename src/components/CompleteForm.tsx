@@ -3,7 +3,7 @@ import { Form, Col, Row, Button } from "react-bootstrap";
 
 const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
   const [arbeidsOngevalData, setArbeidsOngevalData] = useState({
-    // Form 1: Gegevens over de werkgever
+    // Form 1: Gegevens over de werkgever (10)
 
     form1Naam: "",
     form1Tel: "",
@@ -16,7 +16,7 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
     form1OndernemingsNr: "",
     form1VestigingsNr: "",
 
-    // Form 2: Gegevens over het slachtoffer
+    // Form 2: Gegevens over het slachtoffer (13)
 
     form2NaamVoornaam: "",
     form2NaamEchtgenoot: "",
@@ -31,21 +31,123 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
     form2HoofdVerblijfPlaats: "",
     form2Postcode: "",
     form2Gemeente: "",
+
+    // Form 3: Gegevens over het ongeval (39)
+
+    form3DagOngeval: "",
+    form3DatumOngeval: "",
+    form3TijdstipOngeval: "",
+    form3PlaatsOngevalOptie: "",
+    form3VerkeersOngevalJaNee: "",
+    form3Straat: "",
+    form3Postcode: "",
+    form3Gemeente: "",
+    form3Land: "",
+    form3WerfNr: "",
+    form3GewoneFunctieJaNee: "",
+    form3WelkeBezigheid: "",
+    form3OngevalArt2JaNee: "",
+    form3OmgevingText: "",
+    form3AlgemeneActiviteitText: "",
+    form3SpecifiekeActiviteitText: "",
+    form3GebeurtenissenText: "",
+    form3ContactenEnVoorwerpenText: "",
+    form3EersteZorgenDatum: "",
+    form3EersteZorgenTijdstip: "",
+    form3GeneesheerNaam: "",
+    form3GeneesheerStraat: "",
+    form3GeneesheerPostcode: "",
+    form3GeneesheerGemeente: "",
+    form3ProcesVerbaalPlaats: "",
+    form3ProcesVerbaalDatum: "",
+    form3ProcesVerbaalDoor: "",
+    form3NaamAdresAansprakelijke: "",
+    form3NaamAdresVerzekeraar: "",
+    form3PolisNr: "",
+    form3Getuige1Naam: "",
+    form3Getuige1Straat: "",
+    form3Getuige1Postcode: "",
+    form3Getuige1Gemeente: "",
+    form3Getuige2Naam: "",
+    form3Getuige2Straat: "",
+    form3Getuige2Postcode: "",
+    form3Getuige2Gemeente: "",
+    form3AardOngeval: "",
+
+    // Form 4: Gegevens over de werkgever (9)
+
+    form4AdresOfDienstSlachtoffer: "",
+    form4Postcode: "",
+    form4Gemeente: "",
+    form4DienstMedischToezichtNaam: "",
+    form4DienstMedischToezichtStraat: "",
+    form4DienstMedischToezichtPostcode: "",
+    form4DienstMedischToezichtGemeente: "",
+    form4PersoneelsLeden: "",
+    form4ArbeidsDagen: "",
+
+    // Form 5: Gegevens over het slachtoffer en over het ongeval (17)
+
+    form5DatumIndienstTreding: "",
+    form5DuurtijdTewerkstellingOptie: "",
+    form5UitdienstTredingGekendJaNee: "",
+    form5DatumUitdienstTreding: "",
+    form5AardTewerkstellingOptie: "",
+    form5BeroepsCategorieOptie: "",
+    form5AndereBeroepsCategorie: "",
+    form5GewoneFunctieAdministratie: "",
+    form5IscoCode: "",
+    form5HoelangBeroepOptie: "",
+    form5SoortWerkplekOptie: "",
+    form5DatumKennisgevingWerkgever: "",
+    form5PresterenUrenVan: "",
+    form5PresterenUrenTot: "",
+    form5PresterenUrenEnVan: "",
+    form5PresterenUrenEnTot: "",
+    form5OpmerkingenOmstandigheden: "",
+
+    // Form 6: Gegevens over de preventie (31)
+
+    form6ActiviteitAfdelingOfDienst: "",
+    form6BezigheidGewoneFunctieJaNee: "",
+    form6WelkeBezigheid: "",
+    form6Ongeval3juliWetJaNee: "",
+    form6SoortWerk: "",
+    form6SoortWerkCode: "",
+    form6AfwijkendeGebeurtenis: "",
+    form6AfwijkendeGebeurtenisCode: "",
+    form6BetrokkenVoorwerp: "",
+    form6BetrokkenVoorwerpCode: "",
+    form6WijzeVerwonding: "",
+    form6WijzeVerwondingCode: "",
+    form6SoortLetsel: "",
+    form6SoortLetselCode: "",
+    form6VerwondDeel: "",
+    form6VerwondDeelCode: "",
+    form6GevolgenOngevalOptie: "",
+    form6BlijvendeOngeschiktheid: "",
+    form6DatumOverlijden: "",
+    form6DatumStopzettingBeroepsActiviteit: "",
+    form6TijdstipStopzettingBeroepsActiviteit: "",
+    form6DatumWerkHervatting: "",
+    form6DuurArbeidsOngeschiktheid: "",
+    form6BeschermingsMiddelenOpties: [],
+    form6AndereBescherming: "",
+    form6Maatregel1Text: "",
+    form6Maatregel1Code: "",
+    form6Maatregel2Text: "",
+    form6Maatregel2Code: "",
+    form6Maatregel3Text: "",
+    form6Maatregel3Code: "",
   });
 
-  const [plaatsOngeval, setPlaatsOngeval] = useState<string>("");
-  const [bezigheid, setBezigheid] = useState<string>("");
-  const [beroepsCategorie, setBeroepsCategorie] = useState<string>("");
-  const [bezigheidOngeval, setBezigheidOngeval] = useState<string>("");
-  const [gevolgenOngeval, setGevolgenOngeval] = useState<string>("");
   const [andereBescherming, setAndereBescherming] = useState<boolean>(false);
-  const [uitdiensttreding, setUitdiensttreding] = useState<boolean>(false);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
     setArbeidsOngevalData({
-      // Form 1: Gegevens over de werkgever
+      // Form 1: Gegevens over de werkgever (10)
 
       form1Naam: "",
       form1Tel: "",
@@ -58,7 +160,7 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
       form1OndernemingsNr: "",
       form1VestigingsNr: "",
 
-      // Form 2: Gegevens over het slachtoffer
+      // Form 2: Gegevens over het slachtoffer (13)
 
       form2NaamVoornaam: "",
       form2NaamEchtgenoot: "",
@@ -73,6 +175,114 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
       form2HoofdVerblijfPlaats: "",
       form2Postcode: "",
       form2Gemeente: "",
+
+      // Form 3: Gegevens over het ongeval (39)
+
+      form3DagOngeval: "",
+      form3DatumOngeval: "",
+      form3TijdstipOngeval: "",
+      form3PlaatsOngevalOptie: "",
+      form3VerkeersOngevalJaNee: "",
+      form3Straat: "",
+      form3Postcode: "",
+      form3Gemeente: "",
+      form3Land: "",
+      form3WerfNr: "",
+      form3GewoneFunctieJaNee: "",
+      form3WelkeBezigheid: "",
+      form3OngevalArt2JaNee: "",
+      form3OmgevingText: "",
+      form3AlgemeneActiviteitText: "",
+      form3SpecifiekeActiviteitText: "",
+      form3GebeurtenissenText: "",
+      form3ContactenEnVoorwerpenText: "",
+      form3EersteZorgenDatum: "",
+      form3EersteZorgenTijdstip: "",
+      form3GeneesheerNaam: "",
+      form3GeneesheerStraat: "",
+      form3GeneesheerPostcode: "",
+      form3GeneesheerGemeente: "",
+      form3ProcesVerbaalPlaats: "",
+      form3ProcesVerbaalDatum: "",
+      form3ProcesVerbaalDoor: "",
+      form3NaamAdresAansprakelijke: "",
+      form3NaamAdresVerzekeraar: "",
+      form3PolisNr: "",
+      form3Getuige1Naam: "",
+      form3Getuige1Straat: "",
+      form3Getuige1Postcode: "",
+      form3Getuige1Gemeente: "",
+      form3Getuige2Naam: "",
+      form3Getuige2Straat: "",
+      form3Getuige2Postcode: "",
+      form3Getuige2Gemeente: "",
+      form3AardOngeval: "",
+
+      // Form 4: Gegevens over de werkgever (9)
+
+      form4AdresOfDienstSlachtoffer: "",
+      form4Postcode: "",
+      form4Gemeente: "",
+      form4DienstMedischToezichtNaam: "",
+      form4DienstMedischToezichtStraat: "",
+      form4DienstMedischToezichtPostcode: "",
+      form4DienstMedischToezichtGemeente: "",
+      form4PersoneelsLeden: "",
+      form4ArbeidsDagen: "",
+
+      // Form 5: Gegevens over het slachtoffer en over het ongeval (17)
+
+      form5DatumIndienstTreding: "",
+      form5DuurtijdTewerkstellingOptie: "",
+      form5UitdienstTredingGekendJaNee: "",
+      form5DatumUitdienstTreding: "",
+      form5AardTewerkstellingOptie: "",
+      form5BeroepsCategorieOptie: "",
+      form5AndereBeroepsCategorie: "",
+      form5GewoneFunctieAdministratie: "",
+      form5IscoCode: "",
+      form5HoelangBeroepOptie: "",
+      form5SoortWerkplekOptie: "",
+      form5DatumKennisgevingWerkgever: "",
+      form5PresterenUrenVan: "",
+      form5PresterenUrenTot: "",
+      form5PresterenUrenEnVan: "",
+      form5PresterenUrenEnTot: "",
+      form5OpmerkingenOmstandigheden: "",
+
+      // Form 6: Gegevens over de preventie (31)
+
+      form6ActiviteitAfdelingOfDienst: "",
+      form6BezigheidGewoneFunctieJaNee: "",
+      form6WelkeBezigheid: "",
+      form6Ongeval3juliWetJaNee: "",
+      form6SoortWerk: "",
+      form6SoortWerkCode: "",
+      form6AfwijkendeGebeurtenis: "",
+      form6AfwijkendeGebeurtenisCode: "",
+      form6BetrokkenVoorwerp: "",
+      form6BetrokkenVoorwerpCode: "",
+      form6WijzeVerwonding: "",
+      form6WijzeVerwondingCode: "",
+      form6SoortLetsel: "",
+      form6SoortLetselCode: "",
+      form6VerwondDeel: "",
+      form6VerwondDeelCode: "",
+      form6GevolgenOngevalOptie: "",
+      form6BlijvendeOngeschiktheid: "",
+      form6DatumOverlijden: "",
+      form6DatumStopzettingBeroepsActiviteit: "",
+      form6TijdstipStopzettingBeroepsActiviteit: "",
+      form6DatumWerkHervatting: "",
+      form6DuurArbeidsOngeschiktheid: "",
+      form6BeschermingsMiddelenOpties: [],
+      form6AndereBescherming: "",
+      form6Maatregel1Text: "",
+      form6Maatregel1Code: "",
+      form6Maatregel2Text: "",
+      form6Maatregel2Code: "",
+      form6Maatregel3Text: "",
+      form6Maatregel3Code: "",
     });
     onSuccess();
   };
@@ -282,12 +492,12 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
               label="M"
               type={"radio"}
               name="geslacht"
-              value={"M"}
+              checked={arbeidsOngevalData.form2Geslacht === "M"}
               required
-              onChange={(e) =>
+              onChange={() =>
                 setArbeidsOngevalData((prev) => ({
                   ...prev,
-                  form2Geslacht: e.target.value,
+                  form2Geslacht: "M",
                 }))
               }
             />
@@ -296,12 +506,12 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
               label="V"
               type={"radio"}
               name="geslacht"
-              value={"V"}
+              checked={arbeidsOngevalData.form2Geslacht === "V"}
               required
-              onChange={(e) =>
+              onChange={() =>
                 setArbeidsOngevalData((prev) => ({
                   ...prev,
-                  form2Geslacht: e.target.value,
+                  form2Geslacht: "V",
                 }))
               }
             />
@@ -483,17 +693,44 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             required
             pattern="(maandag|Maandag|dinsdag|Dinsdag|woensdag|Woensdag|donderdag|Donderdag|vrijdag|Vrijdag|zaterdag|Zaterdag|zondag|Zondag)"
             title="Voer een geldige dag van de week in"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3DagOngeval: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form3DagOngeval}
           />
         </Col>
         <Col>
           <Form.Label>
             Datum <span className="hoger">(2)</span>:
           </Form.Label>
-          <Form.Control required type="date" />
+          <Form.Control
+            required
+            type="date"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3DatumOngeval: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form3DatumOngeval}
+          />
         </Col>
         <Col>
           <Form.Label>Precieze tijdstip:</Form.Label>
-          <Form.Control type="time" required />
+          <Form.Control
+            type="time"
+            required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3TijdstipOngeval: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form3TijdstipOngeval}
+          />
         </Col>
       </Row>
 
@@ -504,47 +741,90 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           <Form.Check
             inline
             label="in de administratie, dienst of inrichting op het adres vermeld in veld 2"
-            value={
-              "in de administratie, dienst of inrichting op het adres vermeld in veld 2"
-            }
             type={"radio"}
             name="plaatsOngeval"
-            onChange={(e) => setPlaatsOngeval(e.target.value)}
+            checked={
+              arbeidsOngevalData.form3PlaatsOngevalOptie ===
+              "in de administratie, dienst of inrichting op het adres vermeld in veld 2"
+            }
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3PlaatsOngevalOptie:
+                  "in de administratie, dienst of inrichting op het adres vermeld in veld 2",
+              }))
+            }
             required
           />
           <div>
             <Form.Check
               inline
               label="op de openbare weg. In bevestigend geval, betrof het een verkeersongeval?:"
-              value={"op de openbare weg."}
               type={"radio"}
               name="plaatsOngeval"
-              onChange={(e) => setPlaatsOngeval(e.target.value)}
+              checked={
+                arbeidsOngevalData.form3PlaatsOngevalOptie ===
+                "op de openbare weg"
+              }
+              onChange={() =>
+                setArbeidsOngevalData((prev) => ({
+                  ...prev,
+                  form3PlaatsOngevalOptie: "op de openbare weg",
+                }))
+              }
               required
             />
             <Form.Check
               inline
-              label="ja"
+              label="Ja"
               type={"radio"}
               name="verkeersOngeval"
-              required={plaatsOngeval === "op de openbare weg."}
+              checked={arbeidsOngevalData.form3VerkeersOngevalJaNee === "Ja"}
+              required={
+                arbeidsOngevalData.form3PlaatsOngevalOptie ===
+                "op de openbare weg"
+              }
+              onChange={() =>
+                setArbeidsOngevalData((prev) => ({
+                  ...prev,
+                  form3VerkeersOngevalJaNee: "Ja",
+                }))
+              }
             />
             <Form.Check
               inline
-              label="neen"
+              label="Neen"
               type={"radio"}
               name="verkeersOngeval"
-              required={plaatsOngeval === "op de openbare weg."}
+              checked={arbeidsOngevalData.form3VerkeersOngevalJaNee === "Neen"}
+              required={
+                arbeidsOngevalData.form3PlaatsOngevalOptie ===
+                "op de openbare weg"
+              }
+              onChange={() =>
+                setArbeidsOngevalData((prev) => ({
+                  ...prev,
+                  form3VerkeersOngevalJaNee: "Neen",
+                }))
+              }
             />
           </div>
 
           <Form.Check
             inline
             label="op een andere plaats"
-            value={"op een andere plaats"}
             type={"radio"}
             name="plaatsOngeval"
-            onChange={(e) => setPlaatsOngeval(e.target.value)}
+            checked={
+              arbeidsOngevalData.form3PlaatsOngevalOptie ===
+              "op een andere plaats"
+            }
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3PlaatsOngevalOptie: "op een andere plaats",
+              }))
+            }
             required
           />
         </Col>
@@ -561,9 +841,18 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
         <Form.Control
           style={{ width: "98%", marginLeft: "1%" }}
           required={
-            plaatsOngeval === "op de openbare weg." ||
-            plaatsOngeval === "op een andere plaats"
+            arbeidsOngevalData.form3PlaatsOngevalOptie ===
+              "op de openbare weg" ||
+            arbeidsOngevalData.form3PlaatsOngevalOptie ===
+              "op een andere plaats"
           }
+          onChange={(e) =>
+            setArbeidsOngevalData((prev) => ({
+              ...prev,
+              form3Straat: e.target.value,
+            }))
+          }
+          value={arbeidsOngevalData.form3Straat}
         />
       </Row>
 
@@ -572,33 +861,60 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           <Form.Label>Postcode:</Form.Label>
           <Form.Control
             required={
-              plaatsOngeval === "op de openbare weg." ||
-              plaatsOngeval === "op een andere plaats"
+              arbeidsOngevalData.form3PlaatsOngevalOptie ===
+                "op de openbare weg" ||
+              arbeidsOngevalData.form3PlaatsOngevalOptie ===
+                "op een andere plaats"
             }
             pattern="[0-9]{4}"
             title="Voer een geldig postcode in (4 cijfers)"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3Postcode: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form3Postcode}
           />
         </Col>
         <Col>
           <Form.Label>Gemeente:</Form.Label>
           <Form.Control
             required={
-              plaatsOngeval === "op de openbare weg." ||
-              plaatsOngeval === "op een andere plaats"
+              arbeidsOngevalData.form3PlaatsOngevalOptie ===
+                "op de openbare weg" ||
+              arbeidsOngevalData.form3PlaatsOngevalOptie ===
+                "op een andere plaats"
             }
             pattern="[A-Za-z\s]+"
             title="Alleen letters zijn toegestaan"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3Gemeente: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form3Gemeente}
           />
         </Col>
         <Col>
           <Form.Label>Land:</Form.Label>
           <Form.Control
             required={
-              plaatsOngeval === "op de openbare weg." ||
-              plaatsOngeval === "op een andere plaats"
+              arbeidsOngevalData.form3PlaatsOngevalOptie ===
+                "op de openbare weg" ||
+              arbeidsOngevalData.form3PlaatsOngevalOptie ===
+                "op een andere plaats"
             }
             pattern="[A-Za-z\s]+"
             title="Alleen letters zijn toegestaan"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3Land: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form3Land}
           />
         </Col>
       </Row>
@@ -608,11 +924,20 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
         <Form.Control
           style={{ width: "98%", marginLeft: "1%" }}
           required={
-            plaatsOngeval === "op de openbare weg." ||
-            plaatsOngeval === "op een andere plaats"
+            arbeidsOngevalData.form3PlaatsOngevalOptie ===
+              "op de openbare weg" ||
+            arbeidsOngevalData.form3PlaatsOngevalOptie ===
+              "op een andere plaats"
           }
           pattern="[0-9]+"
           title="Alleen cijfers zijn toegestaan"
+          onChange={(e) =>
+            setArbeidsOngevalData((prev) => ({
+              ...prev,
+              form3WerfNr: e.target.value,
+            }))
+          }
+          value={arbeidsOngevalData.form3WerfNr}
         />
       </Row>
 
@@ -626,21 +951,31 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
 
           <Form.Check
             inline
-            label="ja"
+            label="Ja"
             type={"radio"}
             name="gewoneFunctie"
+            checked={arbeidsOngevalData.form3GewoneFunctieJaNee === "Ja"}
             required
-            value={"ja"}
-            onChange={(e) => setBezigheid(e.target.value)}
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3GewoneFunctieJaNee: "Ja",
+              }))
+            }
           />
           <Form.Check
             inline
-            label="neen"
+            label="Neen"
             type={"radio"}
             name="gewoneFunctie"
+            checked={arbeidsOngevalData.form3GewoneFunctieJaNee === "Neen"}
             required
-            value={"nee"}
-            onChange={(e) => setBezigheid(e.target.value)}
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3GewoneFunctieJaNee: "Neen",
+              }))
+            }
           />
         </Col>
       </Row>
@@ -649,7 +984,14 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
         <Form.Label>Zo neen, welke bezigheid oefende het uit?</Form.Label>
         <Form.Control
           style={{ width: "98%", marginLeft: "1%" }}
-          required={bezigheid === "nee"}
+          required={arbeidsOngevalData.form3GewoneFunctieJaNee === "Neen"}
+          onChange={(e) =>
+            setArbeidsOngevalData((prev) => ({
+              ...prev,
+              form3WelkeBezigheid: e.target.value,
+            }))
+          }
+          value={arbeidsOngevalData.form3WelkeBezigheid}
         />
       </Row>
 
@@ -664,17 +1006,31 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           <div>
             <Form.Check
               inline
-              label="ja"
+              label="Ja"
               type={"radio"}
               name="OngevalWet"
+              checked={arbeidsOngevalData.form3OngevalArt2JaNee === "Ja"}
               required
+              onChange={() =>
+                setArbeidsOngevalData((prev) => ({
+                  ...prev,
+                  form3OngevalArt2JaNee: "Ja",
+                }))
+              }
             />
             <Form.Check
               inline
-              label="neen"
+              label="Neen"
               type={"radio"}
               name="OngevalWet"
+              checked={arbeidsOngevalData.form3OngevalArt2JaNee === "Neen"}
               required
+              onChange={() =>
+                setArbeidsOngevalData((prev) => ({
+                  ...prev,
+                  form3OngevalArt2JaNee: "Neen",
+                }))
+              }
             />
           </div>
         </Col>
@@ -695,6 +1051,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           as="textarea"
           style={{ width: "98%", marginLeft: "1%" }}
           required
+          onChange={(e) =>
+            setArbeidsOngevalData((prev) => ({
+              ...prev,
+              form3OmgevingText: e.target.value,
+            }))
+          }
+          value={arbeidsOngevalData.form3OmgevingText}
         />
       </Row>
 
@@ -716,6 +1079,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           as="textarea"
           style={{ width: "98%", marginLeft: "1%" }}
           required
+          onChange={(e) =>
+            setArbeidsOngevalData((prev) => ({
+              ...prev,
+              form3AlgemeneActiviteitText: e.target.value,
+            }))
+          }
+          value={arbeidsOngevalData.form3AlgemeneActiviteitText}
         />
       </Row>
 
@@ -741,6 +1111,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           as="textarea"
           style={{ width: "98%", marginLeft: "1%" }}
           required
+          onChange={(e) =>
+            setArbeidsOngevalData((prev) => ({
+              ...prev,
+              form3SpecifiekeActiviteitText: e.target.value,
+            }))
+          }
+          value={arbeidsOngevalData.form3SpecifiekeActiviteitText}
         />
       </Row>
 
@@ -768,6 +1145,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           as="textarea"
           style={{ width: "98%", marginLeft: "1%" }}
           required
+          onChange={(e) =>
+            setArbeidsOngevalData((prev) => ({
+              ...prev,
+              form3GebeurtenissenText: e.target.value,
+            }))
+          }
+          value={arbeidsOngevalData.form3GebeurtenissenText}
         />
       </Row>
 
@@ -798,6 +1182,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           as="textarea"
           style={{ width: "98%", marginLeft: "1%", marginBottom: "1%" }}
           required
+          onChange={(e) =>
+            setArbeidsOngevalData((prev) => ({
+              ...prev,
+              form3ContactenEnVoorwerpenText: e.target.value,
+            }))
+          }
+          value={arbeidsOngevalData.form3ContactenEnVoorwerpenText}
         />
       </Row>
 
@@ -806,11 +1197,31 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           <Form.Label>
             Eerste zorgen verstrekt op <span className="hoger">(2)</span>:
           </Form.Label>
-          <Form.Control type="date" required />
+          <Form.Control
+            type="date"
+            required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3EersteZorgenDatum: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form3EersteZorgenDatum}
+          />
         </Col>
         <Col>
           <Form.Label>Precieze tijdstrip:</Form.Label>
-          <Form.Control type="time" required />
+          <Form.Control
+            type="time"
+            required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3EersteZorgenTijdstip: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form3EersteZorgenTijdstip}
+          />
         </Col>
       </Row>
 
@@ -825,13 +1236,29 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           required
           pattern="[A-Za-z\s]+"
           title="Alleen letters zijn toegestaan"
+          onChange={(e) =>
+            setArbeidsOngevalData((prev) => ({
+              ...prev,
+              form3GeneesheerNaam: e.target.value,
+            }))
+          }
+          value={arbeidsOngevalData.form3GeneesheerNaam}
         />
       </Row>
 
       <Row>
         <Col>
           <Form.Label>Straat / nr. / bus:</Form.Label>
-          <Form.Control required />
+          <Form.Control
+            required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3GeneesheerStraat: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form3GeneesheerStraat}
+          />
         </Col>
         <Col>
           <Form.Label>Postcode:</Form.Label>
@@ -839,6 +1266,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             pattern="[0-9]{4}"
             title="Voer een geldig postcode in (4 cijfers)"
             required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3GeneesheerPostcode: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form3GeneesheerPostcode}
           />
         </Col>
         <Col>
@@ -847,6 +1281,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             pattern="[A-Za-z\s]+"
             title="Alleen letters zijn toegestaan"
             required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3GeneesheerGemeente: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form3GeneesheerGemeente}
           />
         </Col>
       </Row>
@@ -858,13 +1299,30 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             pattern="[A-Za-z\s]+"
             title="Alleen letters zijn toegestaan"
             required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3ProcesVerbaalPlaats: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form3ProcesVerbaalPlaats}
           />
         </Col>
         <Col>
           <Form.Label>
             Op <span className="hoger">(2)</span>:
           </Form.Label>
-          <Form.Control type="date" required />
+          <Form.Control
+            type="date"
+            required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3ProcesVerbaalDatum: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form3ProcesVerbaalDatum}
+          />
         </Col>
         <Col>
           <Form.Label>Door:</Form.Label>
@@ -872,23 +1330,60 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             pattern="[A-Za-z\s]+"
             title="Alleen letters zijn toegestaan"
             required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3ProcesVerbaalDoor: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form3ProcesVerbaalDoor}
           />
         </Col>
       </Row>
 
       <Row>
         <Form.Label>Naam en adres van de eventuele aansprakelijke:</Form.Label>
-        <Form.Control style={{ width: "98%", marginLeft: "1%" }} required />
+        <Form.Control
+          style={{ width: "98%", marginLeft: "1%" }}
+          required
+          onChange={(e) =>
+            setArbeidsOngevalData((prev) => ({
+              ...prev,
+              form3NaamAdresAansprakelijke: e.target.value,
+            }))
+          }
+          value={arbeidsOngevalData.form3NaamAdresAansprakelijke}
+        />
       </Row>
 
       <Row>
         <Col xs={9}>
           <Form.Label>Naam en adres van de verzekeraar:</Form.Label>
-          <Form.Control required />
+          <Form.Control
+            required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3NaamAdresVerzekeraar: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form3NaamAdresVerzekeraar}
+          />
         </Col>
         <Col>
           <Form.Label>Polisnr:</Form.Label>
-          <Form.Control required />
+          <Form.Control
+            required
+            pattern="[0-9]+"
+            title="Alleen cijfers zijn toegestaan"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3PolisNr: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form3PolisNr}
+          />
         </Col>
       </Row>
 
@@ -898,17 +1393,39 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           <Form.Control
             pattern="[A-Za-z\s]+"
             title="Alleen letters zijn toegestaan"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3Getuige1Naam: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form3Getuige1Naam}
           />
         </Col>
         <Col>
           <Form.Label>Straat / nr. / bus:</Form.Label>
-          <Form.Control />
+          <Form.Control
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3Getuige1Straat: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form3Getuige1Straat}
+          />
         </Col>
         <Col xs={1}>
           <Form.Label>Postcode:</Form.Label>
           <Form.Control
             pattern="[0-9]{4}"
             title="Voer een geldig postcode in (4 cijfers)"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3Getuige1Postcode: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form3Getuige1Postcode}
           />
         </Col>
         <Col>
@@ -916,6 +1433,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           <Form.Control
             pattern="[A-Za-z\s]+"
             title="Alleen letters zijn toegestaan"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3Getuige1Gemeente: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form3Getuige1Gemeente}
           />
         </Col>
       </Row>
@@ -926,17 +1450,39 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           <Form.Control
             pattern="[A-Za-z\s]+"
             title="Alleen letters zijn toegestaan"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3Getuige2Naam: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form3Getuige2Naam}
           />
         </Col>
         <Col>
           <Form.Label>Straat / nr. / bus:</Form.Label>
-          <Form.Control />
+          <Form.Control
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3Getuige2Straat: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form3Getuige2Straat}
+          />
         </Col>
         <Col xs={1}>
           <Form.Label>Postcode:</Form.Label>
           <Form.Control
             pattern="[0-9]{4}"
             title="Voer een geldig postcode in (4 cijfers)"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3Getuige2Postcode: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form3Getuige2Postcode}
           />
         </Col>
         <Col>
@@ -944,6 +1490,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           <Form.Control
             pattern="[A-Za-z\s]+"
             title="Alleen letters zijn toegestaan"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3Getuige2Gemeente: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form3Getuige2Gemeente}
           />
         </Col>
       </Row>
@@ -960,14 +1513,31 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             type={"radio"}
             name="aardOngeval"
             required
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3AardOngeval: "arbeidsongeval",
+              }))
+            }
+            checked={arbeidsOngevalData.form3AardOngeval === "arbeidsongeval"}
           />
 
           <Form.Check
             inline
-            label="ongeval op de weg naar en van het werk "
+            label="ongeval op de weg naar en van het werk"
             type={"radio"}
             name="aardOngeval"
             required
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3AardOngeval: "ongeval op de weg naar en van het werk",
+              }))
+            }
+            checked={
+              arbeidsOngevalData.form3AardOngeval ===
+              "ongeval op de weg naar en van het werk"
+            }
           />
           <Form.Check
             inline
@@ -975,6 +1545,17 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             type={"radio"}
             name="aardOngeval"
             required
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form3AardOngeval:
+                  "ongeval overkomen buiten de uitoefening van de dienst, maar veroorzaakt door een derde wegens het door het slachtoffer uitgeoefend ambt (art. 2, lid 3, 2°, van de wet van 3 juli 1967)",
+              }))
+            }
+            checked={
+              arbeidsOngevalData.form3AardOngeval ===
+              "ongeval overkomen buiten de uitoefening van de dienst, maar veroorzaakt door een derde wegens het door het slachtoffer uitgeoefend ambt (art. 2, lid 3, 2°, van de wet van 3 juli 1967)"
+            }
           />
         </Col>
       </Row>
@@ -987,7 +1568,17 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           Adres van de afdeling of dienst waarvan het slachtoffer afhangt:
           Straat / nr. / bus:
         </Form.Label>
-        <Form.Control style={{ width: "98%", marginLeft: "1%" }} required />
+        <Form.Control
+          style={{ width: "98%", marginLeft: "1%" }}
+          required
+          onChange={(e) =>
+            setArbeidsOngevalData((prev) => ({
+              ...prev,
+              form4AdresOfDienstSlachtoffer: e.target.value,
+            }))
+          }
+          value={arbeidsOngevalData.form4AdresOfDienstSlachtoffer}
+        />
       </Row>
 
       <Row>
@@ -997,6 +1588,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             required
             pattern="[0-9]{4}"
             title="Voer een geldig postcode in (4 cijfers)"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form4Postcode: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form4Postcode}
           />
         </Col>
 
@@ -1006,6 +1604,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             required
             pattern="[A-Za-z\s]+"
             title="Alleen letters zijn toegestaan"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form4Gemeente: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form4Gemeente}
           />
         </Col>
       </Row>
@@ -1014,13 +1619,32 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
         <Form.Label>
           Externe dienst belast met het medisch toezicht - Naam:
         </Form.Label>
-        <Form.Control style={{ width: "98%", marginLeft: "1%" }} required />
+        <Form.Control
+          style={{ width: "98%", marginLeft: "1%" }}
+          required
+          onChange={(e) =>
+            setArbeidsOngevalData((prev) => ({
+              ...prev,
+              form4DienstMedischToezichtNaam: e.target.value,
+            }))
+          }
+          value={arbeidsOngevalData.form4DienstMedischToezichtNaam}
+        />
       </Row>
 
       <Row>
         <Col>
           <Form.Label>Straat / nr. / bus:</Form.Label>
-          <Form.Control required />
+          <Form.Control
+            required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form4DienstMedischToezichtStraat: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form4DienstMedischToezichtStraat}
+          />
         </Col>
         <Col xs={1}>
           <Form.Label>Postcode:</Form.Label>
@@ -1028,6 +1652,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             required
             pattern="[0-9]{4}"
             title="Voer een geldig postcode in (4 cijfers)"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form4DienstMedischToezichtPostcode: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form4DienstMedischToezichtPostcode}
           />
         </Col>
         <Col>
@@ -1036,6 +1667,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             required
             pattern="[A-Za-z\s]+"
             title="Alleen letters zijn toegestaan"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form4DienstMedischToezichtGemeente: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form4DienstMedischToezichtGemeente}
           />
         </Col>
       </Row>
@@ -1051,6 +1689,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           required
           pattern="[0-9]+"
           title="Alleen cijfers zijn toegestaan"
+          onChange={(e) =>
+            setArbeidsOngevalData((prev) => ({
+              ...prev,
+              form4PersoneelsLeden: e.target.value,
+            }))
+          }
+          value={arbeidsOngevalData.form4PersoneelsLeden}
         />
       </Row>
 
@@ -1064,6 +1709,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           required
           pattern="[0-9]+"
           title="Alleen cijfers zijn toegestaan"
+          onChange={(e) =>
+            setArbeidsOngevalData((prev) => ({
+              ...prev,
+              form4ArbeidsDagen: e.target.value,
+            }))
+          }
+          value={arbeidsOngevalData.form4ArbeidsDagen}
         />
       </Row>
 
@@ -1078,6 +1730,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           style={{ width: "20%", marginLeft: "1%" }}
           type="date"
           required
+          onChange={(e) =>
+            setArbeidsOngevalData((prev) => ({
+              ...prev,
+              form5DatumIndienstTreding: e.target.value,
+            }))
+          }
+          value={arbeidsOngevalData.form5DatumIndienstTreding}
         />
       </Row>
 
@@ -1090,6 +1749,16 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             type={"radio"}
             name="duurtijd"
             required
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form5DuurtijdTewerkstellingOptie: "voor onbepaalde duur",
+              }))
+            }
+            checked={
+              arbeidsOngevalData.form5DuurtijdTewerkstellingOptie ===
+              "voor onbepaalde duur"
+            }
           />
           <Form.Check
             inline
@@ -1097,6 +1766,16 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             type={"radio"}
             name="duurtijd"
             required
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form5DuurtijdTewerkstellingOptie: "voor bepaalde duur",
+              }))
+            }
+            checked={
+              arbeidsOngevalData.form5DuurtijdTewerkstellingOptie ===
+              "voor bepaalde duur"
+            }
           />
         </div>
       </Row>
@@ -1104,27 +1783,41 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
       <Row>
         <Col style={{ display: "flex", flexDirection: "column" }}>
           <Form.Label>
-            Is de datum van uitdiensttreding gekend?:
-            <span className="hoger">(3)</span>
+            Is de datum van uitdiensttreding gekend?{" "}
+            <span className="hoger">(3)</span>:
           </Form.Label>
 
           <Form.Check
             inline
-            label="ja"
+            label="Ja"
             type={"radio"}
             name="uitdiensttreding"
             required
-            value={"ja"}
-            onChange={() => setUitdiensttreding(true)}
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form5UitdienstTredingGekendJaNee: "Ja",
+              }))
+            }
+            checked={
+              arbeidsOngevalData.form5UitdienstTredingGekendJaNee === "Ja"
+            }
           />
           <Form.Check
             inline
-            label="neen"
+            label="Neen"
             type={"radio"}
             name="uitdiensttreding"
             required
-            value={"nee"}
-            onChange={() => setUitdiensttreding(false)}
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form5UitdienstTredingGekendJaNee: "Neen",
+              }))
+            }
+            checked={
+              arbeidsOngevalData.form5UitdienstTredingGekendJaNee === "Neen"
+            }
           />
         </Col>
       </Row>
@@ -1136,7 +1829,16 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
         <Form.Control
           style={{ width: "20%", marginLeft: "1%" }}
           type="date"
-          required={uitdiensttreding}
+          required={
+            arbeidsOngevalData.form5UitdienstTredingGekendJaNee === "Ja"
+          }
+          onChange={(e) =>
+            setArbeidsOngevalData((prev) => ({
+              ...prev,
+              form5DatumUitdienstTreding: e.target.value,
+            }))
+          }
+          value={arbeidsOngevalData.form5DatumUitdienstTreding}
         />
       </Row>
 
@@ -1149,6 +1851,15 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             type={"radio"}
             name="aardTewerkstelling"
             required
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form5AardTewerkstellingOptie: "voltijds",
+              }))
+            }
+            checked={
+              arbeidsOngevalData.form5AardTewerkstellingOptie === "voltijds"
+            }
           />
           <Form.Check
             inline
@@ -1156,6 +1867,15 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             type={"radio"}
             name="aardTewerkstelling"
             required
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form5AardTewerkstellingOptie: "deeltijds",
+              }))
+            }
+            checked={
+              arbeidsOngevalData.form5AardTewerkstellingOptie === "deeltijds"
+            }
           />
         </div>
       </Row>
@@ -1171,7 +1891,15 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             type={"radio"}
             name="beroepsCategorie"
             required
-            onChange={(e) => setBeroepsCategorie(e.target.value)}
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form5BeroepsCategorieOptie: "vast benoemd",
+              }))
+            }
+            checked={
+              arbeidsOngevalData.form5BeroepsCategorieOptie === "vast benoemd"
+            }
           />
           <Form.Check
             inline
@@ -1179,7 +1907,15 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             type={"radio"}
             name="beroepsCategorie"
             required
-            onChange={(e) => setBeroepsCategorie(e.target.value)}
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form5BeroepsCategorieOptie: "contractueel",
+              }))
+            }
+            checked={
+              arbeidsOngevalData.form5BeroepsCategorieOptie === "contractueel"
+            }
           />
           <Form.Check
             inline
@@ -1187,7 +1923,15 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             type={"radio"}
             name="beroepsCategorie"
             required
-            onChange={(e) => setBeroepsCategorie(e.target.value)}
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form5BeroepsCategorieOptie: "stagiair",
+              }))
+            }
+            checked={
+              arbeidsOngevalData.form5BeroepsCategorieOptie === "stagiair"
+            }
           />
           <Form.Check
             inline
@@ -1195,21 +1939,48 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             type={"radio"}
             name="beroepsCategorie"
             required
-            onChange={(e) => setBeroepsCategorie(e.target.value)}
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form5BeroepsCategorieOptie: "opleiding tot betaalde arbeid",
+              }))
+            }
+            checked={
+              arbeidsOngevalData.form5BeroepsCategorieOptie ===
+              "opleiding tot betaalde arbeid"
+            }
           />
           <div style={{ display: "flex", flexDirection: "row" }}>
             <Form.Check
               inline
               label="andere (welke?)"
-              value={"andere"}
               type={"radio"}
               name="beroepsCategorie"
               required
-              onChange={(e) => setBeroepsCategorie(e.target.value)}
+              onChange={() =>
+                setArbeidsOngevalData((prev) => ({
+                  ...prev,
+                  form5BeroepsCategorieOptie: "andere",
+                }))
+              }
+              checked={
+                arbeidsOngevalData.form5BeroepsCategorieOptie === "andere"
+              }
             />
             <Form.Control
               style={{ width: "20%" }}
-              required={beroepsCategorie === "andere"}
+              pattern="[A-Za-z\s]+"
+              title="Alleen letters zijn toegestaan"
+              required={
+                arbeidsOngevalData.form5BeroepsCategorieOptie === "andere"
+              }
+              onChange={(e) =>
+                setArbeidsOngevalData((prev) => ({
+                  ...prev,
+                  form5AndereBeroepsCategorie: e.target.value,
+                }))
+              }
+              value={arbeidsOngevalData.form5AndereBeroepsCategorie}
             />
           </div>
         </div>
@@ -1222,6 +1993,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             pattern="[A-Za-z\s]+"
             title="Alleen letters zijn toegestaan"
             required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form5GewoneFunctieAdministratie: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form5GewoneFunctieAdministratie}
           />
         </Col>
         <Col>
@@ -1230,6 +2008,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             pattern="[0-9]+"
             title="Alleen cijfers zijn toegestaan"
             required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form5IscoCode: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form5IscoCode}
           />
         </Col>
       </Row>
@@ -1247,6 +2032,16 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             type={"radio"}
             name="hoelang"
             required
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form5HoelangBeroepOptie: "minder dan één week",
+              }))
+            }
+            checked={
+              arbeidsOngevalData.form5HoelangBeroepOptie ===
+              "minder dan één week"
+            }
           />
           <Form.Check
             inline
@@ -1254,6 +2049,16 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             type={"radio"}
             name="hoelang"
             required
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form5HoelangBeroepOptie: "één week tot één maand",
+              }))
+            }
+            checked={
+              arbeidsOngevalData.form5HoelangBeroepOptie ===
+              "één week tot één maand"
+            }
           />
           <Form.Check
             inline
@@ -1261,6 +2066,16 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             type={"radio"}
             name="hoelang"
             required
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form5HoelangBeroepOptie: "één maand tot één jaar",
+              }))
+            }
+            checked={
+              arbeidsOngevalData.form5HoelangBeroepOptie ===
+              "één maand tot één jaar"
+            }
           />
           <Form.Check
             inline
@@ -1268,6 +2083,16 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             type={"radio"}
             name="hoelang"
             required
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form5HoelangBeroepOptie: "langer dan één jaar",
+              }))
+            }
+            checked={
+              arbeidsOngevalData.form5HoelangBeroepOptie ===
+              "langer dan één jaar"
+            }
           />
         </Col>
       </Row>
@@ -1283,15 +2108,50 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             inline
             label="gebruikelijke werkplek of lokale eenheid"
             type={"radio"}
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form5SoortWerkplekOptie:
+                  "gebruikelijke werkplek of lokale eenheid",
+              }))
+            }
+            checked={
+              arbeidsOngevalData.form5SoortWerkplekOptie ===
+              "gebruikelijke werkplek of lokale eenheid"
+            }
           />
 
           <Form.Check
             inline
             label="occasionele of mobiele werkplek of onderweg voor rekening van de werkgever"
             type={"radio"}
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form5SoortWerkplekOptie:
+                  "occasionele of mobiele werkplek of onderweg voor rekening van de werkgever",
+              }))
+            }
+            checked={
+              arbeidsOngevalData.form5SoortWerkplekOptie ===
+              "occasionele of mobiele werkplek of onderweg voor rekening van de werkgever"
+            }
           />
 
-          <Form.Check inline label="andere werkplek" type={"radio"} />
+          <Form.Check
+            inline
+            label="andere werkplek"
+            type={"radio"}
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form5SoortWerkplekOptie: "andere werkplek",
+              }))
+            }
+            checked={
+              arbeidsOngevalData.form5SoortWerkplekOptie === "andere werkplek"
+            }
+          />
         </Col>
       </Row>
 
@@ -1304,6 +2164,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           style={{ width: "20%", marginLeft: "1%" }}
           type="date"
           required
+          onChange={(e) =>
+            setArbeidsOngevalData((prev) => ({
+              ...prev,
+              form5DatumKennisgevingWerkgever: e.target.value,
+            }))
+          }
+          value={arbeidsOngevalData.form5DatumKennisgevingWerkgever}
         />
       </Row>
 
@@ -1314,22 +2181,60 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             Door het slachtoffer te presteren uren op de dag van het ongeval:
             van
           </Form.Label>
-          <Form.Control type="time" required />
+          <Form.Control
+            type="time"
+            required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form5PresterenUrenVan: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form5PresterenUrenVan}
+          />
         </Col>
         <Col>
           <Form.Label>tot:</Form.Label>
-          <Form.Control type="time" required />
+          <Form.Control
+            type="time"
+            required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form5PresterenUrenTot: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form5PresterenUrenTot}
+          />
         </Col>
       </Row>
 
       <Row>
         <Col>
           <Form.Label>en van:</Form.Label>
-          <Form.Control type="time" />
+          <Form.Control
+            type="time"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form5PresterenUrenEnVan: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form5PresterenUrenEnVan}
+          />
         </Col>
         <Col>
           <Form.Label>tot:</Form.Label>
-          <Form.Control type="time" />
+          <Form.Control
+            type="time"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form5PresterenUrenEnTot: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form5PresterenUrenEnTot}
+          />
         </Col>
       </Row>
 
@@ -1342,6 +2247,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
         <Form.Control
           as="textarea"
           style={{ width: "98%", marginLeft: "1%", marginBottom: "1%" }}
+          onChange={(e) =>
+            setArbeidsOngevalData((prev) => ({
+              ...prev,
+              form5OpmerkingenOmstandigheden: e.target.value,
+            }))
+          }
+          value={arbeidsOngevalData.form5OpmerkingenOmstandigheden}
         />
       </Row>
 
@@ -1352,7 +2264,17 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           Activiteit van de afdeling of dienst waar het slachtoffer gewoonlijk
           zijn functie uitoefent:
         </Form.Label>
-        <Form.Control style={{ width: "98%", marginLeft: "1%" }} required />
+        <Form.Control
+          style={{ width: "98%", marginLeft: "1%" }}
+          required
+          onChange={(e) =>
+            setArbeidsOngevalData((prev) => ({
+              ...prev,
+              form6ActiviteitAfdelingOfDienst: e.target.value,
+            }))
+          }
+          value={arbeidsOngevalData.form6ActiviteitAfdelingOfDienst}
+        />
       </Row>
 
       <Row>
@@ -1364,21 +2286,35 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
         <div>
           <Form.Check
             inline
-            label="ja"
+            label="Ja"
             type={"radio"}
             name="bezigheidOngeval"
-            value={"ja"}
             required
-            onChange={(e) => setBezigheidOngeval(e.target.value)}
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form6BezigheidGewoneFunctieJaNee: "Ja",
+              }))
+            }
+            checked={
+              arbeidsOngevalData.form6BezigheidGewoneFunctieJaNee === "Ja"
+            }
           />
           <Form.Check
             inline
-            label="neen"
+            label="Neen"
             type={"radio"}
             name="bezigheidOngeval"
-            value={"neen"}
             required
-            onChange={(e) => setBezigheidOngeval(e.target.value)}
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form6BezigheidGewoneFunctieJaNee: "Neen",
+              }))
+            }
+            checked={
+              arbeidsOngevalData.form6BezigheidGewoneFunctieJaNee === "Neen"
+            }
           />
         </div>
       </Row>
@@ -1387,7 +2323,16 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
         <Form.Label>Zo neen, welke bezigheid oefende het uit? :</Form.Label>
         <Form.Control
           style={{ width: "98%", marginLeft: "1%" }}
-          required={bezigheidOngeval === "neen"}
+          required={
+            arbeidsOngevalData.form6BezigheidGewoneFunctieJaNee === "Neen"
+          }
+          onChange={(e) =>
+            setArbeidsOngevalData((prev) => ({
+              ...prev,
+              form6WelkeBezigheid: e.target.value,
+            }))
+          }
+          value={arbeidsOngevalData.form6WelkeBezigheid}
         />
       </Row>
 
@@ -1399,17 +2344,31 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
         <div>
           <Form.Check
             inline
-            label="ja"
+            label="Ja"
             type={"radio"}
             name="3juliWet"
             required
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form6Ongeval3juliWetJaNee: "Ja",
+              }))
+            }
+            checked={arbeidsOngevalData.form6Ongeval3juliWetJaNee === "Ja"}
           />
           <Form.Check
             inline
-            label="neen"
+            label="Neen"
             type={"radio"}
             name="3juliWet"
             required
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form6Ongeval3juliWetJaNee: "Neen",
+              }))
+            }
+            checked={arbeidsOngevalData.form6Ongeval3juliWetJaNee === "Neen"}
           />
         </div>
       </Row>
@@ -1421,6 +2380,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             pattern="[A-Za-z\s]+"
             title="Alleen letters zijn toegestaan"
             required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form6SoortWerk: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form6SoortWerk}
           />
         </Col>
         <Col>
@@ -1431,6 +2397,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             pattern="[0-9]+"
             title="Alleen cijfers zijn toegestaan"
             required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form6SoortWerkCode: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form6SoortWerkCode}
           />
         </Col>
       </Row>
@@ -1440,7 +2413,16 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           <Form.Label>
             Laatst afwijkende gebeurtenis die tot het ongeval heeft geleid:
           </Form.Label>
-          <Form.Control required />
+          <Form.Control
+            required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form6AfwijkendeGebeurtenis: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form6AfwijkendeGebeurtenis}
+          />
         </Col>
         <Col>
           <Form.Label>
@@ -1450,6 +2432,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             pattern="[0-9]+"
             title="Alleen cijfers zijn toegestaan"
             required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form6AfwijkendeGebeurtenisCode: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form6AfwijkendeGebeurtenisCode}
           />
         </Col>
       </Row>
@@ -1461,6 +2450,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             pattern="[A-Za-z\s]+"
             title="Alleen letters zijn toegestaan"
             required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form6BetrokkenVoorwerp: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form6BetrokkenVoorwerp}
           />
         </Col>
         <Col>
@@ -1471,6 +2467,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             pattern="[0-9]+"
             title="Alleen cijfers zijn toegestaan"
             required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form6BetrokkenVoorwerpCode: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form6BetrokkenVoorwerpCode}
           />
         </Col>
       </Row>
@@ -1482,6 +2485,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             pattern="[A-Za-z\s]+"
             title="Alleen letters zijn toegestaan"
             required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form6WijzeVerwonding: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form6WijzeVerwonding}
           />
         </Col>
         <Col>
@@ -1492,6 +2502,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             pattern="[0-9]+"
             title="Alleen cijfers zijn toegestaan"
             required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form6WijzeVerwondingCode: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form6WijzeVerwondingCode}
           />
         </Col>
       </Row>
@@ -1505,6 +2522,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             pattern="[A-Za-z\s]+"
             title="Alleen letters zijn toegestaan"
             required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form6SoortLetsel: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form6SoortLetsel}
           />
         </Col>
         <Col>
@@ -1515,6 +2539,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             pattern="[0-9]+"
             title="Alleen cijfers zijn toegestaan"
             required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form6SoortLetselCode: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form6SoortLetselCode}
           />
         </Col>
         <Col xs={4}>
@@ -1525,6 +2556,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             pattern="[A-Za-z\s]+"
             title="Alleen letters zijn toegestaan"
             required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form6VerwondDeel: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form6VerwondDeel}
           />
         </Col>
         <Col>
@@ -1535,6 +2573,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             pattern="[0-9]+"
             title="Alleen cijfers zijn toegestaan"
             required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form6VerwondDeelCode: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form6VerwondDeelCode}
           />
         </Col>
       </Row>
@@ -1551,6 +2596,17 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             type={"radio"}
             name="gevolgen"
             required
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form6GevolgenOngevalOptie:
+                  "geen tijdelijke arbeidsongeschiktheid en geen prothesen te voorzien",
+              }))
+            }
+            checked={
+              arbeidsOngevalData.form6GevolgenOngevalOptie ===
+              "geen tijdelijke arbeidsongeschiktheid en geen prothesen te voorzien"
+            }
           />
 
           <Form.Check
@@ -1559,6 +2615,16 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             type={"radio"}
             name="gevolgen"
             required
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form6GevolgenOngevalOptie: "tijdelijke arbeidsongeschiktheid",
+              }))
+            }
+            checked={
+              arbeidsOngevalData.form6GevolgenOngevalOptie ===
+              "tijdelijke arbeidsongeschiktheid"
+            }
           />
 
           <div style={{ display: "flex" }}>
@@ -1566,15 +2632,34 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
               inline
               label="blijvende arbeidsongeschiktheid te voorzien:"
               type={"radio"}
-              value={"blijvende arbeidsongeschiktheid"}
-              onChange={(e) => setGevolgenOngeval(e.target.value)}
               name="gevolgen"
               required
+              onChange={() =>
+                setArbeidsOngevalData((prev) => ({
+                  ...prev,
+                  form6GevolgenOngevalOptie:
+                    "blijvende arbeidsongeschiktheid te voorzien",
+                }))
+              }
+              checked={
+                arbeidsOngevalData.form6GevolgenOngevalOptie ===
+                "blijvende arbeidsongeschiktheid te voorzien"
+              }
             />
             <Form.Label>de voorziene blijvende ongeschiktheid is:</Form.Label>
             <Form.Control
               style={{ width: "5%", margin: "0% 1%" }}
-              required={gevolgenOngeval === "blijvende arbeidsongeschiktheid"}
+              required={
+                arbeidsOngevalData.form6GevolgenOngevalOptie ===
+                "blijvende arbeidsongeschiktheid te voorzien"
+              }
+              onChange={(e) =>
+                setArbeidsOngevalData((prev) => ({
+                  ...prev,
+                  form6BlijvendeOngeschiktheid: e.target.value,
+                }))
+              }
+              value={arbeidsOngevalData.form6BlijvendeOngeschiktheid}
             />
             <Form.Label>%</Form.Label>
           </div>
@@ -1583,10 +2668,17 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             inline
             label="overlijden"
             type={"radio"}
-            value={"overlijden"}
-            onChange={(e) => setGevolgenOngeval(e.target.value)}
             name="gevolgen"
             required
+            onChange={() =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form6GevolgenOngevalOptie: "overlijden",
+              }))
+            }
+            checked={
+              arbeidsOngevalData.form6GevolgenOngevalOptie === "overlijden"
+            }
           />
         </Col>
       </Row>
@@ -1599,7 +2691,16 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
         <Form.Control
           style={{ width: "20%", marginLeft: "1%" }}
           type="date"
-          required={gevolgenOngeval === "overlijden"}
+          required={
+            arbeidsOngevalData.form6GevolgenOngevalOptie === "overlijden"
+          }
+          onChange={(e) =>
+            setArbeidsOngevalData((prev) => ({
+              ...prev,
+              form6DatumOverlijden: e.target.value,
+            }))
+          }
+          value={arbeidsOngevalData.form6DatumOverlijden}
         />
       </Row>
 
@@ -1612,6 +2713,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           style={{ width: "20%", marginLeft: "1%" }}
           type="date"
           required
+          onChange={(e) =>
+            setArbeidsOngevalData((prev) => ({
+              ...prev,
+              form6DatumStopzettingBeroepsActiviteit: e.target.value,
+            }))
+          }
+          value={arbeidsOngevalData.form6DatumStopzettingBeroepsActiviteit}
         />
       </Row>
 
@@ -1623,6 +2731,13 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           style={{ width: "20%", marginLeft: "1%" }}
           type="time"
           required
+          onChange={(e) =>
+            setArbeidsOngevalData((prev) => ({
+              ...prev,
+              form6TijdstipStopzettingBeroepsActiviteit: e.target.value,
+            }))
+          }
+          value={arbeidsOngevalData.form6TijdstipStopzettingBeroepsActiviteit}
         />
       </Row>
 
@@ -1631,7 +2746,17 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           Datum van de effectieve werkhervatting{" "}
           <span className="hoger">(2)</span>:
         </Form.Label>
-        <Form.Control style={{ width: "20%", marginLeft: "1%" }} type="date" />
+        <Form.Control
+          style={{ width: "20%", marginLeft: "1%" }}
+          type="date"
+          onChange={(e) =>
+            setArbeidsOngevalData((prev) => ({
+              ...prev,
+              form6DatumWerkHervatting: e.target.value,
+            }))
+          }
+          value={arbeidsOngevalData.form6DatumWerkHervatting}
+        />
       </Row>
 
       <Row>
@@ -1642,6 +2767,14 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
         <Form.Control
           style={{ width: "10%", marginLeft: "1%" }}
           type="number"
+          required={arbeidsOngevalData.form6DatumWerkHervatting === ""}
+          onChange={(e) =>
+            setArbeidsOngevalData((prev) => ({
+              ...prev,
+              form6DuurArbeidsOngeschiktheid: e.target.value,
+            }))
+          }
+          value={arbeidsOngevalData.form6DuurArbeidsOngeschiktheid}
         />
       </Row>
 
@@ -1711,7 +2844,17 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
 
       <Row>
         <Col xs={9}>
-          <Form.Control as={"textarea"} required></Form.Control>
+          <Form.Control
+            as={"textarea"}
+            required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form6Maatregel1Text: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form6Maatregel1Text}
+          ></Form.Control>
         </Col>
 
         <Col xs={1}>
@@ -1721,13 +2864,33 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
         </Col>
 
         <Col>
-          <Form.Control required></Form.Control>
+          <Form.Control
+            pattern="[0-9]+"
+            title="Alleen cijfers zijn toegestaan"
+            required
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form6Maatregel1Code: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form6Maatregel1Code}
+          />
         </Col>
       </Row>
 
       <Row>
         <Col xs={9}>
-          <Form.Control as={"textarea"}></Form.Control>
+          <Form.Control
+            as={"textarea"}
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form6Maatregel2Text: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form6Maatregel2Text}
+          ></Form.Control>
         </Col>
 
         <Col xs={1}>
@@ -1737,13 +2900,32 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
         </Col>
 
         <Col>
-          <Form.Control></Form.Control>
+          <Form.Control
+            pattern="[0-9]+"
+            title="Alleen cijfers zijn toegestaan"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form6Maatregel2Code: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form6Maatregel2Code}
+          />
         </Col>
       </Row>
 
       <Row>
         <Col xs={9}>
-          <Form.Control as={"textarea"}></Form.Control>
+          <Form.Control
+            as={"textarea"}
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form6Maatregel3Text: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form6Maatregel3Text}
+          ></Form.Control>
         </Col>
 
         <Col xs={1}>
@@ -1753,7 +2935,17 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
         </Col>
 
         <Col>
-          <Form.Control></Form.Control>
+          <Form.Control
+            pattern="[0-9]+"
+            title="Alleen cijfers zijn toegestaan"
+            onChange={(e) =>
+              setArbeidsOngevalData((prev) => ({
+                ...prev,
+                form6Maatregel3Code: e.target.value,
+              }))
+            }
+            value={arbeidsOngevalData.form6Maatregel3Code}
+          />
         </Col>
       </Row>
       <Button type="submit" className="verzendButton">
