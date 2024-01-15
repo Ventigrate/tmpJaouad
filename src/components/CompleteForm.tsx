@@ -1,151 +1,293 @@
 import { useState } from "react";
-import { Form, Col, Row, Button } from "react-bootstrap";
+import { Form, Col, Row, Button, Table } from "react-bootstrap";
+
+interface ArbeidsOngevalDataProps {
+  // Form 1: Gegevens over de werkgever (10)
+
+  form1Naam: string;
+  form1Tel: string;
+  form1Fax: string;
+  form1Straat: string;
+  form1Postcode: string;
+  form1Gemeente: string;
+  form1Aard: string;
+  form1BELCode: string;
+  form1OndernemingsNr: string;
+  form1VestigingsNr: string;
+
+  // Form 2: Gegevens over het slachtoffer (13)
+
+  form2NaamVoornaam: string;
+  form2NaamEchtgenoot: string;
+  form2Geslacht: string;
+  form2Geboortedatum: string;
+  form2Taalrol: string;
+  form2RijksregisterNr: string;
+  form2Nationaliteit: string;
+  form2MedischDosierNr: string;
+  form2BankrekeningNr: string;
+  form2BIC: string;
+  form2HoofdVerblijfPlaats: string;
+  form2Postcode: string;
+  form2Gemeente: string;
+
+  // Form 3: Gegevens over het ongeval (39)
+
+  form3DagOngeval: string;
+  form3DatumOngeval: string;
+  form3TijdstipOngeval: string;
+  form3PlaatsOngevalOptie: string;
+  form3VerkeersOngevalJaNee: string;
+  form3Straat: string;
+  form3Postcode: string;
+  form3Gemeente: string;
+  form3Land: string;
+  form3WerfNr: string;
+  form3GewoneFunctieJaNee: string;
+  form3WelkeBezigheid: string;
+  form3OngevalArt2JaNee: string;
+  form3OmgevingText: string;
+  form3AlgemeneActiviteitText: string;
+  form3SpecifiekeActiviteitText: string;
+  form3GebeurtenissenText: string;
+  form3ContactenEnVoorwerpenText: string;
+  form3EersteZorgenDatum: string;
+  form3EersteZorgenTijdstip: string;
+  form3GeneesheerNaam: string;
+  form3GeneesheerStraat: string;
+  form3GeneesheerPostcode: string;
+  form3GeneesheerGemeente: string;
+  form3ProcesVerbaalPlaats: string;
+  form3ProcesVerbaalDatum: string;
+  form3ProcesVerbaalDoor: string;
+  form3NaamAdresAansprakelijke: string;
+  form3NaamAdresVerzekeraar: string;
+  form3PolisNr: string;
+  form3Getuige1Naam: string;
+  form3Getuige1Straat: string;
+  form3Getuige1Postcode: string;
+  form3Getuige1Gemeente: string;
+  form3Getuige2Naam: string;
+  form3Getuige2Straat: string;
+  form3Getuige2Postcode: string;
+  form3Getuige2Gemeente: string;
+  form3AardOngeval: string;
+
+  // Form 4: Gegevens over de werkgever (9)
+
+  form4AdresOfDienstSlachtoffer: string;
+  form4Postcode: string;
+  form4Gemeente: string;
+  form4DienstMedischToezichtNaam: string;
+  form4DienstMedischToezichtStraat: string;
+  form4DienstMedischToezichtPostcode: string;
+  form4DienstMedischToezichtGemeente: string;
+  form4PersoneelsLeden: string;
+  form4ArbeidsDagen: string;
+
+  // Form 5: Gegevens over het slachtoffer en over het ongeval (17)
+
+  form5DatumIndienstTreding: string;
+  form5DuurtijdTewerkstellingOptie: string;
+  form5UitdienstTredingGekendJaNee: string;
+  form5DatumUitdienstTreding: string;
+  form5AardTewerkstellingOptie: string;
+  form5BeroepsCategorieOptie: string;
+  form5AndereBeroepsCategorie: string;
+  form5GewoneFunctieAdministratie: string;
+  form5IscoCode: string;
+  form5HoelangBeroepOptie: string;
+  form5SoortWerkplekOptie: string;
+  form5DatumKennisgevingWerkgever: string;
+  form5PresterenUrenVan: string;
+  form5PresterenUrenTot: string;
+  form5PresterenUrenEnVan: string;
+  form5PresterenUrenEnTot: string;
+  form5OpmerkingenOmstandigheden: string;
+
+  // Form 6: Gegevens over de preventie (31)
+
+  form6ActiviteitAfdelingOfDienst: string;
+  form6BezigheidGewoneFunctieJaNee: string;
+  form6WelkeBezigheid: string;
+  form6Ongeval3juliWetJaNee: string;
+  form6SoortWerk: string;
+  form6SoortWerkCode: string;
+  form6AfwijkendeGebeurtenis: string;
+  form6AfwijkendeGebeurtenisCode: string;
+  form6BetrokkenVoorwerp: string;
+  form6BetrokkenVoorwerpCode: string;
+  form6WijzeVerwonding: string;
+  form6WijzeVerwondingCode: string;
+  form6SoortLetsel: string;
+  form6SoortLetselCode: string;
+  form6VerwondDeel: string;
+  form6VerwondDeelCode: string;
+  form6GevolgenOngevalOptie: string;
+  form6BlijvendeOngeschiktheid: string;
+  form6DatumOverlijden: string;
+  form6DatumStopzettingBeroepsActiviteit: string;
+  form6TijdstipStopzettingBeroepsActiviteit: string;
+  form6DatumWerkHervatting: string;
+  form6DuurArbeidsOngeschiktheid: string;
+  form6BeschermingsMiddelenOpties: string[];
+  form6AndereBeschermingIsChecked: boolean;
+  form6AndereBescherming: string;
+  form6AndereBeschermingLijst: string[];
+  form6Maatregel1Text: string;
+  form6Maatregel1Code: string;
+  form6Maatregel2Text: string;
+  form6Maatregel2Code: string;
+  form6Maatregel3Text: string;
+  form6Maatregel3Code: string;
+}
 
 const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
-  const [arbeidsOngevalData, setArbeidsOngevalData] = useState({
-    // Form 1: Gegevens over de werkgever (10)
+  const [arbeidsOngevalData, setArbeidsOngevalData] =
+    useState<ArbeidsOngevalDataProps>({
+      // Form 1: Gegevens over de werkgever (10)
 
-    form1Naam: "",
-    form1Tel: "",
-    form1Fax: "",
-    form1Straat: "",
-    form1Postcode: "",
-    form1Gemeente: "",
-    form1Aard: "",
-    form1BELCode: "",
-    form1OndernemingsNr: "",
-    form1VestigingsNr: "",
+      form1Naam: "",
+      form1Tel: "",
+      form1Fax: "",
+      form1Straat: "",
+      form1Postcode: "",
+      form1Gemeente: "",
+      form1Aard: "",
+      form1BELCode: "",
+      form1OndernemingsNr: "",
+      form1VestigingsNr: "",
 
-    // Form 2: Gegevens over het slachtoffer (13)
+      // Form 2: Gegevens over het slachtoffer (13)
 
-    form2NaamVoornaam: "",
-    form2NaamEchtgenoot: "",
-    form2Geslacht: "",
-    form2Geboortedatum: "",
-    form2Taalrol: "",
-    form2RijksregisterNr: "",
-    form2Nationaliteit: "",
-    form2MedischDosierNr: "",
-    form2BankrekeningNr: "",
-    form2BIC: "",
-    form2HoofdVerblijfPlaats: "",
-    form2Postcode: "",
-    form2Gemeente: "",
+      form2NaamVoornaam: "",
+      form2NaamEchtgenoot: "",
+      form2Geslacht: "",
+      form2Geboortedatum: "",
+      form2Taalrol: "",
+      form2RijksregisterNr: "",
+      form2Nationaliteit: "",
+      form2MedischDosierNr: "",
+      form2BankrekeningNr: "",
+      form2BIC: "",
+      form2HoofdVerblijfPlaats: "",
+      form2Postcode: "",
+      form2Gemeente: "",
 
-    // Form 3: Gegevens over het ongeval (39)
+      // Form 3: Gegevens over het ongeval (39)
 
-    form3DagOngeval: "",
-    form3DatumOngeval: "",
-    form3TijdstipOngeval: "",
-    form3PlaatsOngevalOptie: "",
-    form3VerkeersOngevalJaNee: "",
-    form3Straat: "",
-    form3Postcode: "",
-    form3Gemeente: "",
-    form3Land: "",
-    form3WerfNr: "",
-    form3GewoneFunctieJaNee: "",
-    form3WelkeBezigheid: "",
-    form3OngevalArt2JaNee: "",
-    form3OmgevingText: "",
-    form3AlgemeneActiviteitText: "",
-    form3SpecifiekeActiviteitText: "",
-    form3GebeurtenissenText: "",
-    form3ContactenEnVoorwerpenText: "",
-    form3EersteZorgenDatum: "",
-    form3EersteZorgenTijdstip: "",
-    form3GeneesheerNaam: "",
-    form3GeneesheerStraat: "",
-    form3GeneesheerPostcode: "",
-    form3GeneesheerGemeente: "",
-    form3ProcesVerbaalPlaats: "",
-    form3ProcesVerbaalDatum: "",
-    form3ProcesVerbaalDoor: "",
-    form3NaamAdresAansprakelijke: "",
-    form3NaamAdresVerzekeraar: "",
-    form3PolisNr: "",
-    form3Getuige1Naam: "",
-    form3Getuige1Straat: "",
-    form3Getuige1Postcode: "",
-    form3Getuige1Gemeente: "",
-    form3Getuige2Naam: "",
-    form3Getuige2Straat: "",
-    form3Getuige2Postcode: "",
-    form3Getuige2Gemeente: "",
-    form3AardOngeval: "",
+      form3DagOngeval: "",
+      form3DatumOngeval: "",
+      form3TijdstipOngeval: "",
+      form3PlaatsOngevalOptie: "",
+      form3VerkeersOngevalJaNee: "",
+      form3Straat: "",
+      form3Postcode: "",
+      form3Gemeente: "",
+      form3Land: "",
+      form3WerfNr: "",
+      form3GewoneFunctieJaNee: "",
+      form3WelkeBezigheid: "",
+      form3OngevalArt2JaNee: "",
+      form3OmgevingText: "",
+      form3AlgemeneActiviteitText: "",
+      form3SpecifiekeActiviteitText: "",
+      form3GebeurtenissenText: "",
+      form3ContactenEnVoorwerpenText: "",
+      form3EersteZorgenDatum: "",
+      form3EersteZorgenTijdstip: "",
+      form3GeneesheerNaam: "",
+      form3GeneesheerStraat: "",
+      form3GeneesheerPostcode: "",
+      form3GeneesheerGemeente: "",
+      form3ProcesVerbaalPlaats: "",
+      form3ProcesVerbaalDatum: "",
+      form3ProcesVerbaalDoor: "",
+      form3NaamAdresAansprakelijke: "",
+      form3NaamAdresVerzekeraar: "",
+      form3PolisNr: "",
+      form3Getuige1Naam: "",
+      form3Getuige1Straat: "",
+      form3Getuige1Postcode: "",
+      form3Getuige1Gemeente: "",
+      form3Getuige2Naam: "",
+      form3Getuige2Straat: "",
+      form3Getuige2Postcode: "",
+      form3Getuige2Gemeente: "",
+      form3AardOngeval: "",
 
-    // Form 4: Gegevens over de werkgever (9)
+      // Form 4: Gegevens over de werkgever (9)
 
-    form4AdresOfDienstSlachtoffer: "",
-    form4Postcode: "",
-    form4Gemeente: "",
-    form4DienstMedischToezichtNaam: "",
-    form4DienstMedischToezichtStraat: "",
-    form4DienstMedischToezichtPostcode: "",
-    form4DienstMedischToezichtGemeente: "",
-    form4PersoneelsLeden: "",
-    form4ArbeidsDagen: "",
+      form4AdresOfDienstSlachtoffer: "",
+      form4Postcode: "",
+      form4Gemeente: "",
+      form4DienstMedischToezichtNaam: "",
+      form4DienstMedischToezichtStraat: "",
+      form4DienstMedischToezichtPostcode: "",
+      form4DienstMedischToezichtGemeente: "",
+      form4PersoneelsLeden: "",
+      form4ArbeidsDagen: "",
 
-    // Form 5: Gegevens over het slachtoffer en over het ongeval (17)
+      // Form 5: Gegevens over het slachtoffer en over het ongeval (17)
 
-    form5DatumIndienstTreding: "",
-    form5DuurtijdTewerkstellingOptie: "",
-    form5UitdienstTredingGekendJaNee: "",
-    form5DatumUitdienstTreding: "",
-    form5AardTewerkstellingOptie: "",
-    form5BeroepsCategorieOptie: "",
-    form5AndereBeroepsCategorie: "",
-    form5GewoneFunctieAdministratie: "",
-    form5IscoCode: "",
-    form5HoelangBeroepOptie: "",
-    form5SoortWerkplekOptie: "",
-    form5DatumKennisgevingWerkgever: "",
-    form5PresterenUrenVan: "",
-    form5PresterenUrenTot: "",
-    form5PresterenUrenEnVan: "",
-    form5PresterenUrenEnTot: "",
-    form5OpmerkingenOmstandigheden: "",
+      form5DatumIndienstTreding: "",
+      form5DuurtijdTewerkstellingOptie: "",
+      form5UitdienstTredingGekendJaNee: "",
+      form5DatumUitdienstTreding: "",
+      form5AardTewerkstellingOptie: "",
+      form5BeroepsCategorieOptie: "",
+      form5AndereBeroepsCategorie: "",
+      form5GewoneFunctieAdministratie: "",
+      form5IscoCode: "",
+      form5HoelangBeroepOptie: "",
+      form5SoortWerkplekOptie: "",
+      form5DatumKennisgevingWerkgever: "",
+      form5PresterenUrenVan: "",
+      form5PresterenUrenTot: "",
+      form5PresterenUrenEnVan: "",
+      form5PresterenUrenEnTot: "",
+      form5OpmerkingenOmstandigheden: "",
 
-    // Form 6: Gegevens over de preventie (31)
+      // Form 6: Gegevens over de preventie (31)
 
-    form6ActiviteitAfdelingOfDienst: "",
-    form6BezigheidGewoneFunctieJaNee: "",
-    form6WelkeBezigheid: "",
-    form6Ongeval3juliWetJaNee: "",
-    form6SoortWerk: "",
-    form6SoortWerkCode: "",
-    form6AfwijkendeGebeurtenis: "",
-    form6AfwijkendeGebeurtenisCode: "",
-    form6BetrokkenVoorwerp: "",
-    form6BetrokkenVoorwerpCode: "",
-    form6WijzeVerwonding: "",
-    form6WijzeVerwondingCode: "",
-    form6SoortLetsel: "",
-    form6SoortLetselCode: "",
-    form6VerwondDeel: "",
-    form6VerwondDeelCode: "",
-    form6GevolgenOngevalOptie: "",
-    form6BlijvendeOngeschiktheid: "",
-    form6DatumOverlijden: "",
-    form6DatumStopzettingBeroepsActiviteit: "",
-    form6TijdstipStopzettingBeroepsActiviteit: "",
-    form6DatumWerkHervatting: "",
-    form6DuurArbeidsOngeschiktheid: "",
-    form6BeschermingsMiddelenOpties: [],
-    form6AndereBescherming: "",
-    form6Maatregel1Text: "",
-    form6Maatregel1Code: "",
-    form6Maatregel2Text: "",
-    form6Maatregel2Code: "",
-    form6Maatregel3Text: "",
-    form6Maatregel3Code: "",
-  });
-
-  const [andereBescherming, setAndereBescherming] = useState<boolean>(false);
+      form6ActiviteitAfdelingOfDienst: "",
+      form6BezigheidGewoneFunctieJaNee: "",
+      form6WelkeBezigheid: "",
+      form6Ongeval3juliWetJaNee: "",
+      form6SoortWerk: "",
+      form6SoortWerkCode: "",
+      form6AfwijkendeGebeurtenis: "",
+      form6AfwijkendeGebeurtenisCode: "",
+      form6BetrokkenVoorwerp: "",
+      form6BetrokkenVoorwerpCode: "",
+      form6WijzeVerwonding: "",
+      form6WijzeVerwondingCode: "",
+      form6SoortLetsel: "",
+      form6SoortLetselCode: "",
+      form6VerwondDeel: "",
+      form6VerwondDeelCode: "",
+      form6GevolgenOngevalOptie: "",
+      form6BlijvendeOngeschiktheid: "",
+      form6DatumOverlijden: "",
+      form6DatumStopzettingBeroepsActiviteit: "",
+      form6TijdstipStopzettingBeroepsActiviteit: "",
+      form6DatumWerkHervatting: "",
+      form6DuurArbeidsOngeschiktheid: "",
+      form6BeschermingsMiddelenOpties: [],
+      form6AndereBeschermingIsChecked: false,
+      form6AndereBescherming: "",
+      form6AndereBeschermingLijst: [],
+      form6Maatregel1Text: "",
+      form6Maatregel1Code: "",
+      form6Maatregel2Text: "",
+      form6Maatregel2Code: "",
+      form6Maatregel3Text: "",
+      form6Maatregel3Code: "",
+    });
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-
+    console.log(arbeidsOngevalData);
     setArbeidsOngevalData({
       // Form 1: Gegevens over de werkgever (10)
 
@@ -276,7 +418,9 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
       form6DatumWerkHervatting: "",
       form6DuurArbeidsOngeschiktheid: "",
       form6BeschermingsMiddelenOpties: [],
+      form6AndereBeschermingIsChecked: false,
       form6AndereBescherming: "",
+      form6AndereBeschermingLijst: [],
       form6Maatregel1Text: "",
       form6Maatregel1Code: "",
       form6Maatregel2Text: "",
@@ -285,6 +429,48 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
       form6Maatregel3Code: "",
     });
     onSuccess();
+  };
+
+  const handleCheckboxBescherming = (optie: string) => {
+    setArbeidsOngevalData((prevState) => {
+      const isSelected =
+        prevState.form6BeschermingsMiddelenOpties.includes(optie);
+
+      return {
+        ...prevState,
+        form6BeschermingsMiddelenOpties: isSelected
+          ? prevState.form6BeschermingsMiddelenOpties.filter(
+              (item) => item !== optie
+            )
+          : [...prevState.form6BeschermingsMiddelenOpties, optie],
+      };
+    });
+  };
+
+  const handleAndereBeschermingAddBtn = () => {
+    handleCheckboxBescherming(arbeidsOngevalData.form6AndereBescherming);
+
+    setArbeidsOngevalData((prev) => ({
+      ...prev,
+      form6AndereBeschermingLijst: [
+        ...prev.form6AndereBeschermingLijst,
+        prev.form6AndereBescherming,
+      ],
+      form6AndereBescherming: "",
+    }));
+  };
+
+  const handleAndereBeschermingDeleteBtn = (extraItem: string) => {
+    setArbeidsOngevalData((prev) => ({
+      ...prev,
+      form6AndereBeschermingLijst: prev.form6AndereBeschermingLijst.filter(
+        (item) => item !== extraItem
+      ),
+      form6BeschermingsMiddelenOpties:
+        prev.form6BeschermingsMiddelenOpties.filter(
+          (item) => item !== extraItem
+        ),
+    }));
   };
 
   return (
@@ -312,7 +498,7 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           <Form.Control
             required
             pattern="[0-9]{9}"
-            title="Voer een geldig telefoonnummer in (9 cijfers)"
+            title="Voer een geldig telefoonnummer in van 9 cijfers (bijv., 038719954)"
             onChange={(e) =>
               setArbeidsOngevalData((prev) => ({
                 ...prev,
@@ -929,8 +1115,6 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             arbeidsOngevalData.form3PlaatsOngevalOptie ===
               "op een andere plaats"
           }
-          pattern="[0-9]+"
-          title="Alleen cijfers zijn toegestaan"
           onChange={(e) =>
             setArbeidsOngevalData((prev) => ({
               ...prev,
@@ -1374,8 +1558,6 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           <Form.Label>Polisnr:</Form.Label>
           <Form.Control
             required
-            pattern="[0-9]+"
-            title="Alleen cijfers zijn toegestaan"
             onChange={(e) =>
               setArbeidsOngevalData((prev) => ({
                 ...prev,
@@ -2766,7 +2948,6 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
         </Form.Label>
         <Form.Control
           style={{ width: "10%", marginLeft: "1%" }}
-          type="number"
           required={arbeidsOngevalData.form6DatumWerkHervatting === ""}
           onChange={(e) =>
             setArbeidsOngevalData((prev) => ({
@@ -2785,52 +2966,219 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             het ongeval?:
           </Form.Label>
 
-          <Form.Check inline label="geen" type={"radio"} />
+          <Form.Check
+            inline
+            label="geen"
+            value={"geen"}
+            type={"checkbox"}
+            onChange={(e) => handleCheckboxBescherming(e.target.value)}
+            checked={arbeidsOngevalData.form6BeschermingsMiddelenOpties.includes(
+              "geen"
+            )}
+          />
 
-          <Form.Check inline label="helm" type={"radio"} />
+          <Form.Check
+            inline
+            label="helm"
+            value={"helm"}
+            type={"checkbox"}
+            onChange={(e) => handleCheckboxBescherming(e.target.value)}
+            checked={arbeidsOngevalData.form6BeschermingsMiddelenOpties.includes(
+              "helm"
+            )}
+          />
 
-          <Form.Check inline label="handschoenen" type={"radio"} />
+          <Form.Check
+            inline
+            label="handschoenen"
+            type={"checkbox"}
+            value={"handschoenen"}
+            onChange={(e) => handleCheckboxBescherming(e.target.value)}
+            checked={arbeidsOngevalData.form6BeschermingsMiddelenOpties.includes(
+              "handschoenen"
+            )}
+          />
 
-          <Form.Check inline label="veiligheidsbril" type={"radio"} />
+          <Form.Check
+            inline
+            label="veiligheidsbril"
+            type={"checkbox"}
+            value={"veiligheidsbril"}
+            onChange={(e) => handleCheckboxBescherming(e.target.value)}
+            checked={arbeidsOngevalData.form6BeschermingsMiddelenOpties.includes(
+              "veiligheidsbril"
+            )}
+          />
 
-          <Form.Check inline label="aangezichtsscherm" type={"radio"} />
+          <Form.Check
+            inline
+            label="aangezichtsscherm"
+            type={"checkbox"}
+            value={"aangezichtsscherm"}
+            onChange={(e) => handleCheckboxBescherming(e.target.value)}
+            checked={arbeidsOngevalData.form6BeschermingsMiddelenOpties.includes(
+              "aangezichtsscherm"
+            )}
+          />
 
-          <Form.Check inline label="beschermingsvest" type={"radio"} />
+          <Form.Check
+            inline
+            label="beschermingsvest"
+            type={"checkbox"}
+            value={"beschermingsvest"}
+            onChange={(e) => handleCheckboxBescherming(e.target.value)}
+            checked={arbeidsOngevalData.form6BeschermingsMiddelenOpties.includes(
+              "beschermingsvest"
+            )}
+          />
 
-          <Form.Check inline label="signalisatiekledij" type={"radio"} />
+          <Form.Check
+            inline
+            label="signalisatiekledij"
+            type={"checkbox"}
+            value={"signalisatiekledij"}
+            onChange={(e) => handleCheckboxBescherming(e.target.value)}
+            checked={arbeidsOngevalData.form6BeschermingsMiddelenOpties.includes(
+              "signalisatiekledij"
+            )}
+          />
 
-          <Form.Check inline label="gehoorbescherming" type={"radio"} />
+          <Form.Check
+            inline
+            label="gehoorbescherming"
+            type={"checkbox"}
+            value={"gehoorbescherming"}
+            onChange={(e) => handleCheckboxBescherming(e.target.value)}
+            checked={arbeidsOngevalData.form6BeschermingsMiddelenOpties.includes(
+              "gehoorbescherming"
+            )}
+          />
 
-          <Form.Check inline label="veiligheidsschoeisel" type={"radio"} />
+          <Form.Check
+            inline
+            label="veiligheidsschoeisel"
+            type={"checkbox"}
+            value={"veiligheidsschoeisel"}
+            onChange={(e) => handleCheckboxBescherming(e.target.value)}
+            checked={arbeidsOngevalData.form6BeschermingsMiddelenOpties.includes(
+              "veiligheidsschoeisel"
+            )}
+          />
 
           <Form.Check
             inline
             label="ademhalingsmasker met verse luchttoevoer"
-            type={"radio"}
+            type={"checkbox"}
+            value={"ademhalingsmasker met verse luchttoevoer"}
+            onChange={(e) => handleCheckboxBescherming(e.target.value)}
+            checked={arbeidsOngevalData.form6BeschermingsMiddelenOpties.includes(
+              "ademhalingsmasker met verse luchttoevoer"
+            )}
           />
 
           <Form.Check
             inline
             label="ademhalingsmasker met filter"
-            type={"radio"}
+            type={"checkbox"}
+            value={"ademhalingsmasker met filter"}
+            onChange={(e) => handleCheckboxBescherming(e.target.value)}
+            checked={arbeidsOngevalData.form6BeschermingsMiddelenOpties.includes(
+              "ademhalingsmasker met filter"
+            )}
           />
 
-          <Form.Check inline label="gewoon mondmasker" type={"radio"} />
+          <Form.Check
+            inline
+            label="gewoon mondmasker"
+            type={"checkbox"}
+            value={"gewoon mondmasker"}
+            onChange={(e) => handleCheckboxBescherming(e.target.value)}
+            checked={arbeidsOngevalData.form6BeschermingsMiddelenOpties.includes(
+              "gewoon mondmasker"
+            )}
+          />
 
-          <Form.Check inline label="valbeveiliging" type={"radio"} />
+          <Form.Check
+            inline
+            label="valbeveiliging"
+            type={"checkbox"}
+            value={"valbeveiliging"}
+            onChange={(e) => handleCheckboxBescherming(e.target.value)}
+            checked={arbeidsOngevalData.form6BeschermingsMiddelenOpties.includes(
+              "valbeveiliging"
+            )}
+          />
 
           <div style={{ display: "flex", flexDirection: "row" }}>
             <Form.Check
               inline
               label="andere"
-              type={"radio"}
-              onChange={() => setAndereBescherming(true)}
+              type={"checkbox"}
+              onChange={() =>
+                setArbeidsOngevalData((prev) => ({
+                  ...prev,
+                  form6AndereBeschermingIsChecked:
+                    !arbeidsOngevalData.form6AndereBeschermingIsChecked,
+                }))
+              }
+              checked={
+                arbeidsOngevalData.form6AndereBeschermingIsChecked === true
+              }
             />
             <Form.Control
               style={{ width: "20%" }}
-              required={andereBescherming}
+              required={
+                arbeidsOngevalData.form6AndereBeschermingIsChecked === true
+              }
+              onChange={(e) =>
+                setArbeidsOngevalData((prev) => ({
+                  ...prev,
+                  form6AndereBescherming: e.target.value,
+                }))
+              }
+              value={arbeidsOngevalData.form6AndereBescherming}
             ></Form.Control>
+            <Button
+              type="button"
+              onClick={() => handleAndereBeschermingAddBtn()}
+            >
+              Voeg toe
+            </Button>
           </div>
+
+          <Table
+            striped
+            bordered
+            hover
+            variant="dark"
+            style={{ width: "50%", margin: "2% 0%" }}
+          >
+            <thead>
+              <tr>
+                <th>toegevoegde andere beschermingsmiddelen</th>
+                <th>verwijder</th>
+              </tr>
+            </thead>
+            <tbody>
+              {arbeidsOngevalData.form6AndereBeschermingLijst.map(
+                (extraItem) => (
+                  <tr>
+                    <td>{extraItem}</td>
+                    <td>
+                      <Button
+                        type="button"
+                        onClick={() =>
+                          handleAndereBeschermingDeleteBtn(extraItem)
+                        }
+                      >
+                        delete
+                      </Button>
+                    </td>
+                  </tr>
+                )
+              )}
+            </tbody>
+          </Table>
         </Col>
       </Row>
 
