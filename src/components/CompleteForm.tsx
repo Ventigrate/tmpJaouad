@@ -20,6 +20,8 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
 
   const postDataToApi = async () => {
     setFormData();
+    console.log(arbeidsOngevalData.form6BeschermingsMiddelenOpties)
+    console.log(FORMDATA)
     try {
       const response = await fetch(
         "https://localhost:7143/api/Arbeidsongevallen",
