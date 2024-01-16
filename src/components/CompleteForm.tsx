@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Form, Col, Row, Button, Table } from "react-bootstrap";
 import { MyContext } from "./MyContext";
+import FormData from "./FormData";
 
 const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
   const contextValue = useContext(MyContext);
@@ -11,9 +12,44 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
 
   const { arbeidsOngevalData, setArbeidsOngevalData } = contextValue;
 
+  var FORMDATA: string = "";
+
+  const setFormData = () => {
+    FORMDATA = FormData(arbeidsOngevalData);
+  };
+
+  const postDataToApi = async () => {
+    setFormData();
+    try {
+      const response = await fetch(
+        "https://localhost:7143/api/Arbeidsongevallen",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: FORMDATA,
+        }
+      );
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(
+          `HTTP error! Status: ${response.status}. Response: ${errorText}`
+        );
+      }
+
+      const result = await response.json();
+      console.log("API Response:", result);
+    } catch (error) {
+      console.error("Opgetreden Error tijdens API call:", error);
+    }
+  };
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log(arbeidsOngevalData);
+    postDataToApi();
     setArbeidsOngevalData({
       // Form 1: Gegevens over de werkgever (10)
 
