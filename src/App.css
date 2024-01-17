@@ -21,22 +21,34 @@ legend {
   font-weight: bold;
 }
 
-.verduidelijking
-{
+.verduidelijking {
   width: 55%;
   margin: 3% auto;
-
 }
 
-.hoger{
+.hoger {
   position: relative;
   top: -5px;
   font-style: italic;
 }
 
-.verzendButton
-{
+.verzendButton {
   width: 20%;
   margin: 2% 40%;
-  
+}
+
+.login {
+  width: 55%;
+  margin: 1% auto;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.setUser button {
+  width: 50%;
+  margin: 4% 25%;
+}
+
+.setUser p {
+  margin-top: 4%;
 }
