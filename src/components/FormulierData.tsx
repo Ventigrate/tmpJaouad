@@ -1,4 +1,4 @@
-const FormData = (arbeidsOngevalData: ArbeidsOngevalDataProps) => {
+const FormulierData = (arbeidsOngevalData: ArbeidsOngevalDataProps) => {
   return `{
         "id": 0,
         "form1Naam": "${arbeidsOngevalData.form1Naam}",
@@ -231,4 +231,4 @@ const FormData = (arbeidsOngevalData: ArbeidsOngevalDataProps) => {
       }`;
 };
 
-export default FormData;
+export default FormulierData;

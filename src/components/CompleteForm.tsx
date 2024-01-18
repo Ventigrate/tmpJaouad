@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { MyContext } from "./MyContext";
-import FormData from "./FormData";
 import Form1GegevensWerkgever from "./Formulieren/Form1GegevensWerkgever";
 import Form2GegevensSlachtoffer from "./Formulieren/Form2GegevensSlachtoffer";
 import Form3GegevensOngeval from "./Formulieren/Form3GegevensOngeval";
@@ -11,6 +10,7 @@ import Form6GegevensPreventie from "./Formulieren/Form6GegevensPreventie";
 import Login from "./Login";
 import Verduidelijking from "./Verduidelijking";
 import ExtraFilesUpload from "./Formulieren/ExtraFilesUpload";
+import FormulierData from "./FormulierData";
 
 const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
   const [rol, setRol] = useState<string>("");
@@ -27,7 +27,7 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
   var FORMDATA: string = "";
 
   const setFormData = () => {
-    FORMDATA = FormData(arbeidsOngevalData);
+    FORMDATA = FormulierData(arbeidsOngevalData);
   };
 
   const postDataToApi = async () => {
@@ -59,9 +59,42 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
     }
   };
 
+  const handleUpload = async () => {
+    try {
+      if (!files || files.length === 0) {
+        console.error("No files selected.");
+        return;
+      }
+
+      const apiUrl = "https://localhost:7143/api/Arbeidsongevallen/uploadFiles";
+
+      const formData = new FormData();
+
+      for (let i = 0; i < files.length; i++) {
+        formData.append("files", files[i]);
+      }
+
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        const result = await response.text();
+        console.log(result);
+      } else {
+        console.error(`Failed to upload files. Status: ${response.status}`);
+      }
+    } catch (error) {
+      console.error("Error uploading files:", error);
+    }
+  };
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     postDataToApi();
+    handleUpload();
+    setFiles([])
     setArbeidsOngevalData({
       // Form 1: Gegevens over de werkgever (10)
 
@@ -217,7 +250,7 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             <Form4GegevensWerkgever />
             <Form5GegevensSlachtofferEnOngeval />
             <Form6GegevensPreventie />
-            <ExtraFilesUpload files={files} setFiles={setFiles}/>
+            <ExtraFilesUpload files={files} setFiles={setFiles} />
           </>
         )}
 
@@ -225,7 +258,7 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           <>
             <Form2GegevensSlachtoffer />
             <Form3GegevensOngeval />
-            <ExtraFilesUpload files={files} setFiles={setFiles}/>
+            <ExtraFilesUpload files={files} setFiles={setFiles} />
           </>
         )}
 
@@ -233,7 +266,7 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           <>
             <Form4GegevensWerkgever />
             <Form6GegevensPreventie />
-            <ExtraFilesUpload files={files} setFiles={setFiles}/>
+            <ExtraFilesUpload files={files} setFiles={setFiles} />
           </>
         )}
 
