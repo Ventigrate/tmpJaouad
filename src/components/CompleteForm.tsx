@@ -10,9 +10,12 @@ import Form5GegevensSlachtofferEnOngeval from "./Formulieren/Form5GegevensSlacht
 import Form6GegevensPreventie from "./Formulieren/Form6GegevensPreventie";
 import Login from "./Login";
 import Verduidelijking from "./Verduidelijking";
+import ExtraFilesUpload from "./Formulieren/ExtraFilesUpload";
 
 const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
   const [rol, setRol] = useState<string>("");
+  const [files, setFiles] = useState<File[]>([]);
+
   const contextValue = useContext(MyContext);
 
   if (!contextValue) {
@@ -214,6 +217,7 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
             <Form4GegevensWerkgever />
             <Form5GegevensSlachtofferEnOngeval />
             <Form6GegevensPreventie />
+            <ExtraFilesUpload files={files} setFiles={setFiles}/>
           </>
         )}
 
@@ -221,6 +225,7 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           <>
             <Form2GegevensSlachtoffer />
             <Form3GegevensOngeval />
+            <ExtraFilesUpload files={files} setFiles={setFiles}/>
           </>
         )}
 
@@ -228,6 +233,7 @@ const CompleteForm = ({ onSuccess }: { onSuccess: () => void }) => {
           <>
             <Form4GegevensWerkgever />
             <Form6GegevensPreventie />
+            <ExtraFilesUpload files={files} setFiles={setFiles}/>
           </>
         )}
 
